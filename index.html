@@ -1,0 +1,155 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gunjan | BI Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: "Inter", sans-serif; background: #0b1929; color: #e2e8f0; min-height: 100vh; }
+    .page-header { padding: 3rem 2rem 1.5rem; text-align: center; }
+    .page-header h1 { font-size: clamp(1.8rem,4vw,2.8rem); font-weight: 800; color: #fff; }
+    .page-header h1 span { background: linear-gradient(135deg,#0068b5,#60a5fa); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+    .page-header p { margin-top: .75rem; color: #94a3b8; font-size: 1rem; }
+    .grid-wrap { max-width: 1140px; margin: 2rem auto 4rem; padding: 0 1.5rem; display: grid; grid-template-columns: repeat(auto-fill,minmax(320px,1fr)); gap: 1.5rem; }
+    .card { background: #112240; border: 1px solid #1e3a5f; border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; transition: transform .25s ease, box-shadow .25s ease; }
+    .card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(0,0,0,.4); }
+    .card-banner { height: 130px; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    .card-banner.p1 { background: linear-gradient(135deg,#0068b5,#00487e); }
+    .card-banner.p2 { background: linear-gradient(135deg,#0d9488,#065f46); }
+    .card-banner.p3 { background: linear-gradient(135deg,#7c3aed,#4f46e5); }
+    .card-banner.p4 { background: linear-gradient(135deg,#ea580c,#b45309); }
+    .card-banner.p5 { background: linear-gradient(135deg,#dc2626,#991b1b); }
+    .card-banner.p6 { background: linear-gradient(135deg,#0369a1,#1e3a8a); }
+    .card-badge { position: absolute; top: .75rem; left: .75rem; background: rgba(0,0,0,.35); color: #fff; font-size: .7rem; font-weight: 600; padding: 3px 10px; border-radius: 20px; letter-spacing: .5px; text-transform: uppercase; }
+    .featured-banner::after { content: "Featured"; position: absolute; top: .75rem; right: .75rem; background: rgba(255,255,255,.15); color: #fff; font-size: .7rem; font-weight: 600; padding: 3px 10px; border-radius: 20px; }
+    .mini-bars { display: flex; align-items: flex-end; gap: 5px; height: 60px; opacity: .3; }
+    .mini-bars span { width: 12px; background: #fff; border-radius: 3px 3px 0 0; }
+    .card-body { padding: 1.25rem 1.25rem 1rem; flex: 1; display: flex; flex-direction: column; }
+    .card-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: .75rem; }
+    .tag { font-size: .68rem; font-weight: 600; padding: 3px 9px; border-radius: 20px; background: rgba(0,104,181,.2); color: #60a5fa; border: 1px solid rgba(0,104,181,.3); }
+    .card-body h3 { font-size: 1rem; font-weight: 700; color: #f1f5f9; margin-bottom: .5rem; line-height: 1.4; }
+    .card-body p { font-size: .83rem; color: #94a3b8; line-height: 1.6; flex: 1; }
+    .card-impact { display: flex; gap: 1rem; margin: 1rem 0; padding: .75rem; background: rgba(0,0,0,.2); border-radius: 8px; }
+    .impact-item { display: flex; flex-direction: column; gap: 2px; }
+    .impact-num { font-size: .95rem; font-weight: 700; color: #60a5fa; }
+    .impact-item span:last-child { font-size: .7rem; color: #64748b; }
+    .card-footer { padding: 0 1.25rem 1.25rem; }
+    .btn-view { display: block; width: 100%; padding: .7rem; background: #0068b5; color: #fff; font-size: .875rem; font-weight: 600; text-align: center; border-radius: 8px; text-decoration: none; transition: background .2s; }
+    .btn-view:hover { background: #0080db; }
+  </style>
+</head>
+<body>
+  <div class="page-header">
+    <h1>Gunjan<span>'s BI Projects</span></h1>
+    <p>Click any project to explore the full details</p>
+  </div>
+  <div class="grid-wrap">
+
+    <div class="card">
+      <div class="card-banner p1">
+        <span class="card-badge">Power BI + SQL</span>
+        <div class="mini-bars"><span style="height:55%"></span><span style="height:80%"></span><span style="height:45%"></span><span style="height:95%"></span><span style="height:65%"></span></div>
+      </div>
+      <div class="card-body">
+        <div class="card-tags"><span class="tag">Power BI</span><span class="tag">T-SQL</span><span class="tag">Insurance</span></div>
+        <h3>Insurance Claims Analytics Dashboard</h3>
+        <p>Multi-page Power BI dashboard on 300K+ claims. Tracks claim frequency, SLA breaches and adjuster performance with drill-through capabilities.</p>
+        <div class="card-impact">
+          <div class="impact-item"><span class="impact-num">&#8595; 22%</span><span>Processing Time</span></div>
+          <div class="impact-item"><span class="impact-num">$1.8M</span><span>Cost Identified</span></div>
+        </div>
+      </div>
+      <div class="card-footer"><a href="project-1.html" class="btn-view">View Details &#8594;</a></div>
+    </div>
+
+    <div class="card">
+      <div class="card-banner p2 featured-banner">
+        <span class="card-badge">Base SAS + SQL</span>
+        <div class="mini-bars"><span style="height:40%"></span><span style="height:55%"></span><span style="height:70%"></span><span style="height:85%"></span><span style="height:95%"></span></div>
+      </div>
+      <div class="card-body">
+        <div class="card-tags"><span class="tag">Base SAS</span><span class="tag">SAS EG</span><span class="tag">Predictive</span></div>
+        <h3>Policy Renewal Prediction &amp; Retention Analysis</h3>
+        <p>SAS logistic regression predicts policy lapse risk 60 days before renewal. Trained on 5 relational tables with Power BI results view.</p>
+        <div class="card-impact">
+          <div class="impact-item"><span class="impact-num">&#8593; 9.4%</span><span>Retention</span></div>
+          <div class="impact-item"><span class="impact-num">87%</span><span>Model AUC</span></div>
+        </div>
+      </div>
+      <div class="card-footer"><a href="project-2.html" class="btn-view">View Details &#8594;</a></div>
+    </div>
+
+    <div class="card">
+      <div class="card-banner p3">
+        <span class="card-badge">Power Automate + SSIS</span>
+        <div class="mini-bars"><span style="height:60%"></span><span style="height:90%"></span><span style="height:50%"></span><span style="height:75%"></span><span style="height:85%"></span></div>
+      </div>
+      <div class="card-body">
+        <div class="card-tags"><span class="tag">Power Automate</span><span class="tag">SSIS</span><span class="tag">SQL Server</span></div>
+        <h3>Automated KPI Reporting Pipeline</h3>
+        <p>Replaced 12 hrs of manual Excel reporting. SSIS ETL loads data nightly; Power Automate triggers PDF report distribution via email.</p>
+        <div class="card-impact">
+          <div class="impact-item"><span class="impact-num">12 hrs</span><span>Saved Weekly</span></div>
+          <div class="impact-item"><span class="impact-num">0</span><span>Manual Errors</span></div>
+        </div>
+      </div>
+      <div class="card-footer"><a href="project-3.html" class="btn-view">View Details &#8594;</a></div>
+    </div>
+
+    <div class="card">
+      <div class="card-banner p4">
+        <span class="card-badge">T-SQL + SAS + Power BI</span>
+        <div class="mini-bars"><span style="height:80%"></span><span style="height:50%"></span><span style="height:95%"></span><span style="height:65%"></span><span style="height:75%"></span></div>
+      </div>
+      <div class="card-body">
+        <div class="card-tags"><span class="tag">T-SQL</span><span class="tag">SAS FASTCLUS</span><span class="tag">Marketing</span></div>
+        <h3>Customer Segmentation &amp; Marketing Analytics</h3>
+        <p>RFM scoring on 500K policyholders with SAS k-means clustering into 6 segments. Power BI tracks campaign ROI per segment.</p>
+        <div class="card-impact">
+          <div class="impact-item"><span class="impact-num">&#8593; 31%</span><span>Response Rate</span></div>
+          <div class="impact-item"><span class="impact-num">6</span><span>Segments</span></div>
+        </div>
+      </div>
+      <div class="card-footer"><a href="project-4.html" class="btn-view">View Details &#8594;</a></div>
+    </div>
+
+    <div class="card">
+      <div class="card-banner p5">
+        <span class="card-badge">Base SAS + SSIS</span>
+        <div class="mini-bars"><span style="height:30%"></span><span style="height:45%"></span><span style="height:90%"></span><span style="height:55%"></span><span style="height:70%"></span></div>
+      </div>
+      <div class="card-body">
+        <div class="card-tags"><span class="tag">Base SAS</span><span class="tag">T-SQL</span><span class="tag">Fraud Analytics</span></div>
+        <h3>Insurance Fraud Detection Analytics</h3>
+        <p>18-rule SAS scoring engine flags suspicious claims before payment. SSIS nightly batch feeds a Power BI SIU alert dashboard.</p>
+        <div class="card-impact">
+          <div class="impact-item"><span class="impact-num">&#8377;2.4 Cr</span><span>Fraud Prevented</span></div>
+          <div class="impact-item"><span class="impact-num">&#8595; 41%</span><span>False Positives</span></div>
+        </div>
+      </div>
+      <div class="card-footer"><a href="project-5.html" class="btn-view">View Details &#8594;</a></div>
+    </div>
+
+    <div class="card">
+      <div class="card-banner p6">
+        <span class="card-badge">SAS EG + Power BI</span>
+        <div class="mini-bars"><span style="height:50%"></span><span style="height:70%"></span><span style="height:85%"></span><span style="height:60%"></span><span style="height:95%"></span></div>
+      </div>
+      <div class="card-body">
+        <div class="card-tags"><span class="tag">SAS EG</span><span class="tag">GLM</span><span class="tag">Power BI RLS</span></div>
+        <h3>Premium Pricing Sophistication Dashboard</h3>
+        <p>PROC GENMOD GLM models 12 rating variables. Power BI with RLS compares actual vs expected loss ratios for underwriters.</p>
+        <div class="card-impact">
+          <div class="impact-item"><span class="impact-num">&#8593; 6.2%</span><span>Loss Ratio Improvement</span></div>
+          <div class="impact-item"><span class="impact-num">12</span><span>Rating Variables</span></div>
+        </div>
+      </div>
+      <div class="card-footer"><a href="project-6.html" class="btn-view">View Details &#8594;</a></div>
+    </div>
+
+  </div>
+</body>
+</html>

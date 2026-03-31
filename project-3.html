@@ -1,0 +1,469 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Automated KPI Pipeline | BI Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="project.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="topnav-inner">
+    <a href="index.html" class="back-btn"><span class="back-arrow">←</span> Back to Portfolio</a>
+    <span class="logo">Gunjan<span>.</span></span>
+    <div class="proj-nav-links">
+      <a href="project-2.html">← Prev</a>
+      <a href="project-4.html">Next →</a>
+    </div>
+  </div>
+</nav>
+
+<header class="proj-hero p3-hero">
+  <div class="proj-hero-inner">
+    <p class="proj-eyebrow">Project 03 · SSIS + Power Automate + SQL Server + Power BI</p>
+    <h1>Automated KPI Reporting Pipeline</h1>
+    <p>An end-to-end pipeline replacing 12 hours of manual weekly Excel reporting. SSIS packages extract and transform data from 4 source systems nightly; Power Automate triggers Power BI refresh and delivers role-personalised PDF reports by 7 AM every day.</p>
+    <div class="proj-tags">
+      <span class="ptag">SSIS</span>
+      <span class="ptag">SQL Server</span>
+      <span class="ptag">T-SQL</span>
+      <span class="ptag">Power Automate</span>
+      <span class="ptag">Power BI Service</span>
+      <span class="ptag">Microsoft Forms</span>
+      <span class="ptag">SharePoint</span>
+    </div>
+  </div>
+</header>
+
+<div class="metrics-strip">
+  <div class="metrics-strip-inner">
+    <div class="metric-item"><div class="metric-num">12 hrs</div><div class="metric-lbl">Saved Weekly</div></div>
+    <div class="metric-item"><div class="metric-num">0</div><div class="metric-lbl">Manual Errors</div></div>
+    <div class="metric-item"><div class="metric-num">4</div><div class="metric-lbl">Source Systems</div></div>
+    <div class="metric-item"><div class="metric-num">100%</div><div class="metric-lbl">On-time Delivery</div></div>
+  </div>
+</div>
+
+<div class="proj-body">
+  <div class="content-grid">
+    <div class="content-left">
+      <div class="section-block">
+        <h2>Business Problem</h2>
+        <p>Finance and operations analysts spent 12+ hours every Monday manually pulling data from 4 disconnected systems (CRM, Billing, Claims, HR), joining it in Excel, formatting reports, and emailing individually to 22 stakeholders. The process was error-prone, often delayed by 1–2 days, and produced inconsistent figures due to differing cut-off times.</p>
+        <p>Leadership needed consistent, automated daily KPI reports by 7 AM personalised by role with zero manual effort.</p>
+      </div>
+
+      <div class="section-block">
+        <h2>Solution Overview</h2>
+        <ul>
+          <li>Designed 4 SSIS packages one per source system extracting data nightly at 02:00, loading into a centralised SQL Server staging database</li>
+          <li>Built T-SQL stored procedures for data transformation, KPI calculations, and built-in data quality assertions (row count checks, NULL thresholds, range validations)</li>
+          <li>Created a Power BI semantic model (star schema) with scheduled refresh at 06:00 daily</li>
+          <li>Built a Power Automate flow: triggered on successful Power BI refresh → exports PDF per role → sends personalised email to CEO, VPs, Managers, and Analysts</li>
+          <li>Microsoft Forms portal for ad-hoc report requests submissions auto-log to SharePoint list and create a Teams task assigned to the report owner</li>
+          <li>Documented full pipeline architecture and wrote runbook for handover</li>
+        </ul>
+      </div>
+
+      <div class="section-block">
+        <h2>Pipeline Architecture</h2>
+        <div class="pipeline">
+          <div class="pipe-box">
+            <span class="pipe-icon">🗄️</span>
+            <div class="pipe-label">4 Source Systems</div>
+            <div class="pipe-sub">CRM / Billing / Claims / HR</div>
+          </div>
+          <span class="pipe-arrow">→</span>
+          <div class="pipe-box">
+            <span class="pipe-icon">⚙️</span>
+            <div class="pipe-label">SSIS Packages</div>
+            <div class="pipe-sub">Nightly 02:00 Extract</div>
+          </div>
+          <span class="pipe-arrow">→</span>
+          <div class="pipe-box">
+            <span class="pipe-icon">🏛️</span>
+            <div class="pipe-label">SQL Server DW</div>
+            <div class="pipe-sub">Star Schema + QA</div>
+          </div>
+          <span class="pipe-arrow">→</span>
+          <div class="pipe-box">
+            <span class="pipe-icon">📊</span>
+            <div class="pipe-label">Power BI Refresh</div>
+            <div class="pipe-sub">Semantic Model 06:00</div>
+          </div>
+          <span class="pipe-arrow">→</span>
+          <div class="pipe-box">
+            <span class="pipe-icon">⚡</span>
+            <div class="pipe-label">Power Automate</div>
+            <div class="pipe-sub">PDF → Email by 07:00</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-block">
+        <h2>Process Walkthrough</h2>
+        <div class="process-steps">
+          <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <h4>SSIS Package Design</h4>
+              <p>Each package uses OLE DB source → Derived Column transforms → Data Quality Script task → OLE DB destination. Packages log row counts and error rows to a pipeline_log table.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <h4>T-SQL Stored Procedures</h4>
+              <p>usp_Transform_KPIs runs after all 4 packages complete applies business logic, calculates 15 KPIs, flags anomalies where today's totals deviate &gt;20% from 30-day average.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <h4>Power BI Semantic Model</h4>
+              <p>DirectQuery to SQL Server star schema (Fact_KPI + 4 dimension tables). 18 DAX measures. Row-level security: each manager sees only their team's data. Refresh scheduled 06:00.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">4</div>
+            <div class="step-content">
+              <h4>Power Automate Distribution Flow</h4>
+              <p>Trigger: Power BI refresh complete. Actions: loop through recipient list (stored in SharePoint), export role-specific report page as PDF, send personalised email with attachment.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">5</div>
+            <div class="step-content">
+              <h4>Ad-hoc Request Portal</h4>
+              <p>Microsoft Forms collects report title, owner, refresh frequency, and priority. Power Automate creates a SharePoint list item and posts a Teams message to the BI channel.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-right">
+      <div class="sidebar-card">
+        <h3>Tech Stack</h3>
+        <div class="tech-badges">
+          <span class="tbadge primary">SSIS</span>
+          <span class="tbadge primary">Power Automate</span>
+          <span class="tbadge">SQL Server 2019</span>
+          <span class="tbadge">T-SQL</span>
+          <span class="tbadge">Stored Procedures</span>
+          <span class="tbadge">Power BI Service</span>
+          <span class="tbadge">DAX</span>
+          <span class="tbadge">Microsoft Forms</span>
+          <span class="tbadge">SharePoint</span>
+          <span class="tbadge">Teams</span>
+        </div>
+      </div>
+
+      <div class="sidebar-card">
+        <h3>Business Impact</h3>
+        <div class="result-items">
+          <div class="result-item"><span class="result-icon">⏰</span><div class="result-text"><strong>12 hrs/week</strong> analyst time freed up</div></div>
+          <div class="result-item"><span class="result-icon">✅</span><div class="result-text"><strong>Zero errors</strong> automated QA checks catch data issues before delivery</div></div>
+          <div class="result-item"><span class="result-icon">🚀</span><div class="result-text">Reports delivered by <strong>07:00 every day</strong>, vs 2-day lag previously</div></div>
+          <div class="result-item"><span class="result-icon">👥</span><div class="result-text"><strong>22 stakeholders</strong> receiving personalised reports</div></div>
+          <div class="result-item"><span class="result-icon">📋</span><div class="result-text">Full process <strong>documented</strong> for knowledge transfer</div></div>
+        </div>
+      </div>
+
+      <div class="sidebar-card">
+        <h3>Reports Automated</h3>
+        <div class="result-items">
+          <div class="result-item"><span class="result-icon">📈</span><div class="result-text"><strong>Executive Daily Summary</strong> CEO & Board</div></div>
+          <div class="result-item"><span class="result-icon">📊</span><div class="result-text"><strong>Operations KPI Report</strong> Ops VPs</div></div>
+          <div class="result-item"><span class="result-icon">💰</span><div class="result-text"><strong>Finance Flash</strong> CFO & Finance</div></div>
+          <div class="result-item"><span class="result-icon">🔍</span><div class="result-text"><strong>Claims Digest</strong> Managers</div></div>
+          <div class="result-item"><span class="result-icon">👤</span><div class="result-text"><strong>Agent Scorecard</strong> Team Leads</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHARTS -->
+  <div class="chart-section">
+    <h2>Before &amp; After: Efficiency Metrics</h2>
+    <div class="charts-grid">
+      <div class="chart-card">
+        <h4>Weekly Manual Hours – Before vs After</h4>
+        <canvas id="hoursChart"></canvas>
+      </div>
+      <div class="chart-card">
+        <h4>Report Delivery Time (Hours After Business Day Start)</h4>
+        <canvas id="deliveryChart"></canvas>
+      </div>
+      <div class="chart-card">
+        <h4>Data Quality Errors Caught by Pipeline (Weekly)</h4>
+        <canvas id="errorChart"></canvas>
+      </div>
+      <div class="chart-card">
+        <h4>Stakeholder Satisfaction Score (Survey, /10)</h4>
+        <canvas id="satChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- CODE -->
+  <div class="code-section">
+    <h2>Code Samples</h2>
+    <div class="code-tabs">
+      <button class="code-tab active" onclick="showTab(this,'sql3')">T-SQL – KPI Stored Proc</button>
+      <button class="code-tab" onclick="showTab(this,'ssis3')">SSIS – Data Quality Script</button>
+      <button class="code-tab" onclick="showTab(this,'pa3')">Power Automate – Flow Logic</button>
+    </div>
+    <div class="code-block-wrap">
+      <div class="code-block active" id="sql3">
+        <pre><code><span class="cm">-- KPI transformation stored procedure</span>
+<span class="kw">CREATE PROCEDURE</span> <span class="fn">usp_Transform_KPIs</span>
+    @run_date <span class="kw">DATE</span> = <span class="kw">NULL</span>
+<span class="kw">AS</span>
+<span class="kw">BEGIN</span>
+    <span class="kw">SET</span> <span class="fn">NOCOUNT ON</span>;
+    <span class="kw">SET</span> @run_date = <span class="fn">ISNULL</span>(@run_date, <span class="fn">CAST</span>(<span class="fn">GETDATE</span>() <span class="kw">AS DATE</span>));
+
+    <span class="cm">-- Truncate today's KPI rows</span>
+    <span class="kw">DELETE FROM</span> dbo.Fact_KPI
+    <span class="kw">WHERE</span>  report_date = @run_date;
+
+    <span class="cm">-- Insert calculated KPIs</span>
+    <span class="kw">INSERT INTO</span> dbo.Fact_KPI
+           (report_date, kpi_name, kpi_value, dept_id, prev_day_value, variance_pct)
+    <span class="kw">SELECT</span>
+        @run_date,
+        kpi.kpi_name,
+        kpi.kpi_value,
+        kpi.dept_id,
+        prev.kpi_value                   <span class="kw">AS</span> prev_day_value,
+        <span class="fn">ROUND</span>(
+          (kpi.kpi_value - prev.kpi_value)
+          / <span class="fn">NULLIF</span>(prev.kpi_value, <span class="num">0</span>) * <span class="num">100</span>, <span class="num">2</span>
+        )                                <span class="kw">AS</span> variance_pct
+    <span class="kw">FROM</span>  (<span class="kw">SELECT</span>  <span class="cm">/* Claims KPI */</span>
+               <span class="str">'Claims Received'</span> kpi_name,
+               <span class="fn">COUNT</span>(*)         kpi_value,
+               <span class="str">'OPS'</span>            dept_id
+           <span class="kw">FROM</span> stg.Claims_Today
+           <span class="kw">UNION ALL</span>
+           <span class="kw">SELECT</span>  <span class="cm">/* Revenue KPI */</span>
+               <span class="str">'Premium Collected'</span>,
+               <span class="fn">SUM</span>(amount), <span class="str">'FIN'</span>
+           <span class="kw">FROM</span> stg.Billing_Today
+           <span class="kw">WHERE</span> status = <span class="str">'PAID'</span>
+          ) kpi
+    <span class="kw">LEFT JOIN</span> dbo.Fact_KPI prev
+           <span class="kw">ON</span> prev.kpi_name   = kpi.kpi_name
+          <span class="kw">AND</span> prev.dept_id    = kpi.dept_id
+          <span class="kw">AND</span> prev.report_date = <span class="fn">DATEADD</span>(day,<span class="op">-</span><span class="num">1</span>,@run_date);
+
+    <span class="cm">-- QA: flag anomalies > 20% deviation from 30-day avg</span>
+    <span class="kw">UPDATE</span> dbo.Fact_KPI
+    <span class="kw">SET</span>    anomaly_flag = <span class="num">1</span>
+    <span class="kw">WHERE</span>  report_date = @run_date
+      <span class="kw">AND</span>  <span class="fn">ABS</span>(variance_pct) > <span class="num">20</span>;
+<span class="kw">END</span>;</code></pre>
+      </div>
+      <div class="code-block" id="ssis3">
+        <pre><code><span class="cm">// SSIS Script Task – Row Count & NULL QA Check</span>
+<span class="cm">// Runs after each source extract</span>
+<span class="kw">public void</span> <span class="fn">Main</span>()
+{
+    <span class="kw">string</span> table = Dts.Variables[<span class="str">"User::StagingTable"</span>].Value.ToString();
+    <span class="kw">int</span> rowCount, nullCount, expectedMin;
+
+    <span class="kw">using</span> (<span class="kw">var</span> conn = <span class="kw">new</span> <span class="fn">SqlConnection</span>(connStr))
+    {
+        conn.Open();
+        <span class="cm">// Check row count</span>
+        rowCount = (<span class="kw">int</span>)<span class="kw">new</span> <span class="fn">SqlCommand</span>(
+            <span class="str">$"SELECT COUNT(*) FROM stg.{table}"</span>, conn)
+            .ExecuteScalar();
+
+        expectedMin = (<span class="kw">int</span>)Dts.Variables[<span class="str">"User::ExpectedMinRows"</span>].Value;
+
+        <span class="kw">if</span> (rowCount &lt; expectedMin)
+        {
+            Dts.Events.FireError(<span class="num">0</span>, <span class="str">"QA Check"</span>,
+                <span class="str">$"Row count {rowCount} below minimum {expectedMin}"</span>,
+                <span class="str">""</span>, <span class="num">0</span>);
+            Dts.TaskResult = (<span class="kw">int</span>)ScriptResults.Failure;
+            <span class="kw">return</span>;
+        }
+
+        <span class="cm">// Check NULL rate on key column</span>
+        nullCount = (<span class="kw">int</span>)<span class="kw">new</span> <span class="fn">SqlCommand</span>(
+            <span class="str">$"SELECT COUNT(*) FROM stg.{table} WHERE key_id IS NULL"</span>,
+            conn).ExecuteScalar();
+
+        <span class="kw">if</span> ((nullCount * <span class="num">1.0</span> / rowCount) > <span class="num">0.01</span>) <span class="cm">// >1% NULLs</span>
+        {
+            Dts.Events.FireWarning(<span class="num">0</span>, <span class="str">"QA Check"</span>,
+                <span class="str">$"NULL rate {nullCount/rowCount:P} exceeds threshold"</span>,
+                <span class="str">""</span>, <span class="num">0</span>);
+        }
+    }
+
+    <span class="cm">// Log to pipeline_log table</span>
+    <span class="fn">LogPipelineRun</span>(table, rowCount, nullCount);
+    Dts.TaskResult = (<span class="kw">int</span>)ScriptResults.Success;
+}</code></pre>
+      </div>
+      <div class="code-block" id="pa3">
+        <pre><code><span class="cm">// Power Automate Flow Pseudo-logic</span>
+<span class="cm">// Trigger: "When a Power BI dataset refresh completes"</span>
+<span class="cm">//   Group: KPI_Reports_Workspace</span>
+<span class="cm">//   Dataset: Daily_Operations_Model</span>
+
+<span class="kw">TRIGGER</span>: Power BI Dataset Refresh Succeeded
+
+<span class="kw">ACTION 1</span>: <span class="fn">Get items</span> from SharePoint list <span class="str">'ReportRecipients'</span>
+  <span class="cm">// Columns: Name, Email, Role, ReportPageName</span>
+
+<span class="kw">ACTION 2</span>: <span class="fn">Apply to each</span> item in ReportRecipients
+
+    <span class="kw">ACTION 2a</span>: <span class="fn">Export Power BI report</span> as PDF
+        WorkspaceId : <span class="str">"KPI_Reports_Workspace"</span>
+        ReportId    : <span class="str">"Daily_Ops_Report"</span>
+        Pages       : <span class="fn">item[ReportPageName]</span>   <span class="cm">// role-specific page</span>
+        FileFormat  : PDF
+
+    <span class="kw">ACTION 2b</span>: <span class="fn">Send an email</span> (Outlook)
+        To      : <span class="fn">item[Email]</span>
+        Subject : <span class="str">"📊 Daily KPI Report – @{formatDateTime(utcNow(),'dd MMM yyyy')}"</span>
+        Body    : <span class="str">"Hi @{item[Name]}, please find your daily KPI report attached."</span>
+        Attach  : <span class="fn">PDF from Action 2a</span>
+
+<span class="kw">ACTION 3</span>: <span class="kw">Condition</span> any anomaly_flag = 1 in SQL table?
+    <span class="kw">IF YES</span>: <span class="fn">Post message</span> to Teams channel <span class="str">"⚠️ Data anomaly detected in today's KPIs"</span>
+    <span class="kw">IF NO</span>:  <span class="fn">Terminate</span> successfully</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- TABLE -->
+  <div class="table-section">
+    <h2>Pipeline Run Log Sample (Last 7 Days)</h2>
+    <table class="data-table">
+      <thead>
+        <tr><th>Run Date</th><th>Source</th><th>Rows Loaded</th><th>Errors</th><th>QA Status</th><th>Duration</th><th>Report Sent</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>30 Mar 2026</td><td>All 4 sources</td><td>284,211</td><td>0</td><td><span class="badge-green">PASS</span></td><td>3m 42s</td><td>07:04 AM</td></tr>
+        <tr><td>29 Mar 2026</td><td>All 4 sources</td><td>281,944</td><td>0</td><td><span class="badge-green">PASS</span></td><td>3m 38s</td><td>07:02 AM</td></tr>
+        <tr><td>28 Mar 2026</td><td>All 4 sources</td><td>279,600</td><td>0</td><td><span class="badge-green">PASS</span></td><td>3m 51s</td><td>07:05 AM</td></tr>
+        <tr><td>27 Mar 2026</td><td>All 4 sources</td><td>283,100</td><td>2</td><td><span class="badge-blue">WARN</span></td><td>4m 12s</td><td>07:08 AM</td></tr>
+        <tr><td>26 Mar 2026</td><td>All 4 sources</td><td>280,540</td><td>0</td><td><span class="badge-green">PASS</span></td><td>3m 44s</td><td>07:03 AM</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="proj-footer-nav">
+  <div class="proj-footer-inner">
+    <a href="project-2.html" class="pnav-card">
+      <span class="pnav-arrow">←</span>
+      <div><div class="pnav-label">Previous Project</div><div class="pnav-title">Policy Renewal Prediction</div></div>
+    </a>
+    <a href="project-4.html" class="pnav-card next">
+      <div><div class="pnav-label">Next Project</div><div class="pnav-title">Customer Segmentation</div></div>
+      <span class="pnav-arrow">→</span>
+    </a>
+  </div>
+</div>
+
+<script>
+const blue='#0068b5',blueLight='rgba(0,104,181,0.15)',accent='#f04e23',green='#16a34a';
+
+new Chart(document.getElementById('hoursChart'),{
+  type:'bar',
+  data:{
+    labels:['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],
+    datasets:[
+      {label:'Before (hrs)',data:[7.5,1.5,1.0,0.8,1.2,0,0],backgroundColor:'rgba(239,68,68,0.6)',borderRadius:5},
+      {label:'After (hrs)', data:[0,0,0,0,0,0,0],backgroundColor:'rgba(0,104,181,0.6)',borderRadius:5}
+    ]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:true,
+    plugins:{legend:{labels:{font:{size:10},boxWidth:14}}},
+    scales:{
+      x:{grid:{display:false},ticks:{color:'#64748b',font:{size:10}}},
+      y:{grid:{color:'#f0f4f8'},ticks:{color:'#64748b',font:{size:10}},title:{display:true,text:'Hours',font:{size:10},color:'#64748b'}}
+    }
+  }
+});
+
+new Chart(document.getElementById('deliveryChart'),{
+  type:'scatter',
+  data:{
+    datasets:[
+      {label:'Before Automation',data:[{x:1,y:10},{x:2,y:8},{x:3,y:14},{x:4,y:11},{x:5,y:9},{x:6,y:12},{x:7,y:10}],backgroundColor:accent,pointRadius:7},
+      {label:'After Automation', data:[{x:1,y:1.1},{x:2,y:1.0},{x:3,y:1.2},{x:4,y:1.0},{x:5,y:1.1},{x:6,y:1.2},{x:7,y:1.0}],backgroundColor:blue,pointRadius:7}
+    ]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:true,
+    plugins:{legend:{labels:{font:{size:10},boxWidth:14}}},
+    scales:{
+      x:{min:0,max:8,grid:{color:'#f0f4f8'},ticks:{display:false},title:{display:true,text:'Days',font:{size:10},color:'#64748b'}},
+      y:{grid:{color:'#f0f4f8'},ticks:{color:'#64748b',font:{size:10}},title:{display:true,text:'Hours after 9AM',font:{size:10},color:'#64748b'}}
+    }
+  }
+});
+
+new Chart(document.getElementById('errorChart'),{
+  type:'bar',
+  data:{
+    labels:['W1','W2','W3','W4','W5','W6','W7','W8'],
+    datasets:[{
+      label:'Errors Caught by QA',
+      data:[0,2,0,0,1,0,2,0],
+      backgroundColor:'rgba(234,179,8,0.7)',borderRadius:4
+    }]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:true,
+    plugins:{legend:{display:false}},
+    scales:{
+      x:{grid:{display:false},ticks:{color:'#64748b',font:{size:10}}},
+      y:{grid:{color:'#f0f4f8'},ticks:{color:'#64748b',font:{size:10},stepSize:1}}
+    }
+  }
+});
+
+new Chart(document.getElementById('satChart'),{
+  type:'line',
+  data:{
+    labels:['Week 1','Week 2','Week 4','Week 6','Week 8','Week 10','Week 12'],
+    datasets:[{
+      label:'Satisfaction /10',
+      data:[4.2,6.1,7.4,7.8,8.2,8.6,9.1],
+      borderColor:green,backgroundColor:'rgba(22,163,74,0.1)',
+      borderWidth:2.5,fill:true,tension:0.4,pointRadius:4,pointBackgroundColor:green
+    }]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:true,
+    plugins:{legend:{display:false}},
+    scales:{
+      y:{min:3,max:10,grid:{color:'#f0f4f8'},ticks:{color:'#64748b',font:{size:10}}},
+      x:{grid:{display:false},ticks:{color:'#64748b',font:{size:10}}}
+    }
+  }
+});
+
+function showTab(btn,id){
+  document.querySelectorAll('.code-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.code-block').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+</script>
+</body>
+</html>

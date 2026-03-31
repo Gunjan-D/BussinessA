@@ -1,0 +1,442 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Claims Analytics Dashboard | BI Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="project.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+<!-- TOPNAV -->
+<nav class="topnav">
+  <div class="topnav-inner">
+    <a href="index.html" class="back-btn"><span class="back-arrow">←</span> Back to Portfolio</a>
+    <span class="logo">Gunjan<span>.</span></span>
+    <div class="proj-nav-links">
+      <a href="project-2.html">Next →</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="proj-hero p1-hero">
+  <div class="proj-hero-inner">
+    <p class="proj-eyebrow">Project 01 · Power BI + SQL Server + SSRS</p>
+    <h1>Insurance Claims Analytics Dashboard</h1>
+    <p>A 5-page interactive Power BI report built on a SQL Server data model, giving operations teams real-time visibility into claim volumes, SLA compliance, adjuster performance, and cost drivers across 300K+ claims records.</p>
+    <div class="proj-tags">
+      <span class="ptag">Power BI</span>
+      <span class="ptag">T-SQL</span>
+      <span class="ptag">DAX</span>
+      <span class="ptag">SSRS</span>
+      <span class="ptag">SQL Server 2019</span>
+      <span class="ptag">Power Query (M)</span>
+    </div>
+  </div>
+</header>
+
+<!-- METRICS -->
+<div class="metrics-strip">
+  <div class="metrics-strip-inner">
+    <div class="metric-item"><div class="metric-num">↓ 22%</div><div class="metric-lbl">Claim Processing Time</div></div>
+    <div class="metric-item"><div class="metric-num">$1.8M</div><div class="metric-lbl">Cost Overruns Surfaced</div></div>
+    <div class="metric-item"><div class="metric-num">15</div><div class="metric-lbl">Business Users Trained</div></div>
+    <div class="metric-item"><div class="metric-num">5</div><div class="metric-lbl">Dashboard Pages</div></div>
+  </div>
+</div>
+
+<!-- BODY -->
+<div class="proj-body">
+  <div class="content-grid">
+
+    <!-- LEFT -->
+    <div class="content-left">
+      <div class="section-block">
+        <h2>Business Problem</h2>
+        <p>The claims operations team had no centralized visibility into claim lifecycles. Each adjuster maintained their own Excel tracker, leading to missed SLAs, duplicate effort, and $1.8M in undetected cost overruns discovered only at quarter-end financial reconciliation.</p>
+        <p>Leadership needed a single source of truth for claim frequency, severity, processing time, and adjuster workload all in near real-time.</p>
+      </div>
+
+      <div class="section-block">
+        <h2>Solution Overview</h2>
+        <ul>
+          <li>Wrote optimized T-SQL queries joining 6 tables: Claims, Policy, Adjuster, Coverage, Payment, Region building a star schema in SQL Server</li>
+          <li>Designed a 5-page Power BI report: Executive Summary, Claim Lifecycle, Adjuster Performance, Regional Heatmap, SLA Tracker</li>
+          <li>Implemented DAX measures for rolling 13-month trends, YoY comparisons, and dynamic benchmark lines</li>
+          <li>Set up incremental refresh on the Power BI dataset (24M row fact table) refresh time reduced from 45 min to 6 min</li>
+          <li>Automated SSRS snapshot for weekly PDF distribution to leadership via email subscription</li>
+          <li>Conducted stakeholder walkthroughs and trained 15 end-users across 3 departments</li>
+        </ul>
+      </div>
+
+      <div class="section-block">
+        <h2>Process Walkthrough</h2>
+        <div class="process-steps">
+          <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <h4>Requirements Gathering</h4>
+              <p>Ran 6 stakeholder sessions with claims managers, adjusters, and finance. Documented 23 KPIs, 8 drill-through paths, and 4 benchmark targets in a BRD.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <h4>Data Extraction & Modelling</h4>
+              <p>Profiled source tables (300K+ claim records). Wrote T-SQL ETL logic handled NULL imputation, date spine generation for SLA calculations, and surrogate key management.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <h4>DAX Measures & Calculations</h4>
+              <p>Built 40+ DAX measures: Claim Frequency Rate, Avg Days to Close, SLA Breach %, Cost per Claim, YoY Change %, Moving 13-Month Average.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">4</div>
+            <div class="step-content">
+              <h4>Dashboard Design & QA</h4>
+              <p>Designed all 5 pages in Power BI Desktop, applied row-level security by region. Ran automated data quality checks comparing Power BI totals vs SQL Server aggregates.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">5</div>
+            <div class="step-content">
+              <h4>Deployment & Training</h4>
+              <p>Published to Power BI Service, configured scheduled refresh, set up SSRS weekly snapshot. Delivered training across 3 sessions; created a user guide with FAQs.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT SIDEBAR -->
+    <div class="content-right">
+      <div class="sidebar-card">
+        <h3>Tech Stack</h3>
+        <div class="tech-badges">
+          <span class="tbadge primary">Power BI Desktop</span>
+          <span class="tbadge primary">SQL Server 2019</span>
+          <span class="tbadge">T-SQL</span>
+          <span class="tbadge">DAX</span>
+          <span class="tbadge">Power Query (M)</span>
+          <span class="tbadge">SSRS</span>
+          <span class="tbadge">Excel</span>
+          <span class="tbadge">Star Schema</span>
+          <span class="tbadge">Row-Level Security</span>
+          <span class="tbadge">Incremental Refresh</span>
+        </div>
+      </div>
+
+      <div class="sidebar-card">
+        <h3>Key Outcomes</h3>
+        <div class="result-items">
+          <div class="result-item"><span class="result-icon">⚡</span><div class="result-text"><strong>22% faster</strong> claim processing after bottleneck visibility</div></div>
+          <div class="result-item"><span class="result-icon">💰</span><div class="result-text"><strong>$1.8M</strong> in cost overruns identified in first month</div></div>
+          <div class="result-item"><span class="result-icon">⏱️</span><div class="result-text">Dataset refresh: <strong>45 min → 6 min</strong></div></div>
+          <div class="result-item"><span class="result-icon">📊</span><div class="result-text"><strong>15 users</strong> self-serving data; Excel reports eliminated</div></div>
+          <div class="result-item"><span class="result-icon">✅</span><div class="result-text">SLA breach rate dropped from <strong>18% → 4%</strong></div></div>
+        </div>
+      </div>
+
+      <div class="sidebar-card">
+        <h3>Dashboard Pages</h3>
+        <div class="result-items">
+          <div class="result-item"><span class="result-icon">📋</span><div class="result-text"><strong>Page 1:</strong> Executive Summary</div></div>
+          <div class="result-item"><span class="result-icon">🔄</span><div class="result-text"><strong>Page 2:</strong> Claim Lifecycle & SLA</div></div>
+          <div class="result-item"><span class="result-icon">👤</span><div class="result-text"><strong>Page 3:</strong> Adjuster Performance</div></div>
+          <div class="result-item"><span class="result-icon">🗺️</span><div class="result-text"><strong>Page 4:</strong> Regional Heatmap</div></div>
+          <div class="result-item"><span class="result-icon">💵</span><div class="result-text"><strong>Page 5:</strong> Cost & Severity Tracker</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHARTS -->
+  <div class="chart-section">
+    <h2>Project Data Visualizations</h2>
+    <div class="charts-grid">
+      <div class="chart-card">
+        <h4>Monthly Claims Volume (Last 12 Months)</h4>
+        <canvas id="claimsVolumeChart"></canvas>
+      </div>
+      <div class="chart-card">
+        <h4>Average Processing Time (Days) – Before vs After</h4>
+        <canvas id="processingTimeChart"></canvas>
+      </div>
+      <div class="chart-card">
+        <h4>Claim Status Breakdown</h4>
+        <canvas id="statusChart"></canvas>
+      </div>
+      <div class="chart-card">
+        <h4>SLA Compliance Rate (%) by Month</h4>
+        <canvas id="slaChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- CODE -->
+  <div class="code-section">
+    <h2>Code Samples</h2>
+    <div class="code-tabs">
+      <button class="code-tab active" onclick="showTab(this,'sql1')">T-SQL – Data Model</button>
+      <button class="code-tab" onclick="showTab(this,'dax1')">DAX – Key Measures</button>
+      <button class="code-tab" onclick="showTab(this,'m1')">Power Query (M)</button>
+    </div>
+    <div class="code-block-wrap">
+      <div class="code-block active" id="sql1">
+        <pre><code><span class="cm">-- Claims Star Schema – Fact + Dimension joins</span>
+<span class="kw">CREATE VIEW</span> <span class="fn">vw_ClaimsFact</span> <span class="kw">AS</span>
+<span class="kw">SELECT</span>
+    c.ClaimID,
+    c.PolicyID,
+    c.ClaimDate,
+    c.ClosedDate,
+    <span class="fn">DATEDIFF</span>(day, c.ClaimDate, c.ClosedDate)   <span class="kw">AS</span> DaysToClose,
+    <span class="fn">CASE</span>
+        <span class="kw">WHEN</span> <span class="fn">DATEDIFF</span>(day, c.ClaimDate, c.ClosedDate) &lt;= <span class="num">30</span>
+        <span class="kw">THEN</span> <span class="str">'Within SLA'</span>
+        <span class="kw">ELSE</span> <span class="str">'SLA Breach'</span>
+    <span class="kw">END</span>                                             <span class="kw">AS</span> SLAStatus,
+    c.ClaimAmount,
+    c.PaidAmount,
+    c.ClaimStatus,
+    a.AdjusterName,
+    a.Region,
+    p.ProductLine,
+    p.CoverageType,
+    <span class="cm">-- Rolling 13-month flag</span>
+    <span class="fn">CASE</span>
+        <span class="kw">WHEN</span> c.ClaimDate &gt;= <span class="fn">DATEADD</span>(month, <span class="op">-</span><span class="num">13</span>, <span class="fn">GETDATE</span>())
+        <span class="kw">THEN</span> <span class="num">1</span> <span class="kw">ELSE</span> <span class="num">0</span>
+    <span class="kw">END</span>                                             <span class="kw">AS</span> IsRolling13M
+<span class="kw">FROM</span>       dbo.Claims      c
+<span class="kw">INNER JOIN</span> dbo.Adjusters   a  <span class="kw">ON</span> c.AdjusterID  = a.AdjusterID
+<span class="kw">INNER JOIN</span> dbo.Policies    p  <span class="kw">ON</span> c.PolicyID    = p.PolicyID
+<span class="kw">INNER JOIN</span> dbo.Coverage    cv <span class="kw">ON</span> p.CoverageID  = cv.CoverageID
+<span class="kw">WHERE</span>  c.ClaimDate &gt;= <span class="str">'2022-01-01'</span>
+  <span class="kw">AND</span>  c.IsDeleted    = <span class="num">0</span>;</code></pre>
+      </div>
+      <div class="code-block" id="dax1">
+        <pre><code><span class="cm">-- Claim Frequency Rate (per 1000 policies)</span>
+<span class="fn">Claim Frequency Rate</span> =
+<span class="kw">DIVIDE</span>(
+    <span class="fn">COUNTROWS</span>( Claims ),
+    <span class="fn">CALCULATE</span>( <span class="fn">DISTINCTCOUNT</span>( Policies[PolicyID] ) ),
+    <span class="num">0</span>
+) * <span class="num">1000</span>
+
+<span class="cm">-- SLA Breach %</span>
+<span class="fn">SLA Breach %</span> =
+<span class="kw">DIVIDE</span>(
+    <span class="fn">CALCULATE</span>( <span class="fn">COUNTROWS</span>( Claims ), Claims[SLAStatus] = <span class="str">"SLA Breach"</span> ),
+    <span class="fn">COUNTROWS</span>( Claims ),
+    <span class="num">0</span>
+)
+
+<span class="cm">-- YoY Claims Change %</span>
+<span class="fn">YoY Claims Change %</span> =
+<span class="kw">VAR</span> CurrentYear =
+    <span class="fn">CALCULATE</span>( <span class="fn">COUNTROWS</span>( Claims ), <span class="fn">DATESYTD</span>( DateTable[Date] ) )
+<span class="kw">VAR</span> PriorYear =
+    <span class="fn">CALCULATE</span>( <span class="fn">COUNTROWS</span>( Claims ),
+        <span class="fn">DATESYTD</span>( <span class="fn">SAMEPERIODLASTYEAR</span>( DateTable[Date] ) ) )
+<span class="kw">RETURN</span>
+    <span class="kw">DIVIDE</span>( CurrentYear - PriorYear, PriorYear, <span class="num">0</span> )
+
+<span class="cm">-- Rolling 13-Month Avg Days to Close</span>
+<span class="fn">Avg Days to Close (13M)</span> =
+<span class="fn">CALCULATE</span>(
+    <span class="fn">AVERAGE</span>( Claims[DaysToClose] ),
+    <span class="fn">DATESINPERIOD</span>( DateTable[Date], <span class="fn">LASTDATE</span>( DateTable[Date] ), <span class="op">-</span><span class="num">13</span>, MONTH )
+)</code></pre>
+      </div>
+      <div class="code-block" id="m1">
+        <pre><code><span class="cm">// Power Query M SLA status column & date spine</span>
+<span class="kw">let</span>
+    Source = Sql.Database(<span class="str">"SQLSRV01"</span>, <span class="str">"ClaimsDB"</span>),
+    ClaimsTable = Source{[Schema=<span class="str">"dbo"</span>,Item=<span class="str">"vw_ClaimsFact"</span>]}[Data],
+
+    <span class="cm">// Add fiscal month column</span>
+    AddFiscalMonth = Table.AddColumn(ClaimsTable, <span class="str">"FiscalMonth"</span>,
+        each <span class="kw">if</span> Date.Month([ClaimDate]) >= 4
+             <span class="kw">then</span> Date.Month([ClaimDate]) - 3
+             <span class="kw">else</span> Date.Month([ClaimDate]) + 9,
+        Int64.Type),
+
+    <span class="cm">// Rename for readability</span>
+    Renamed = Table.RenameColumns(AddFiscalMonth,{
+        {<span class="str">"DaysToClose"</span>, <span class="str">"Processing Days"</span>},
+        {<span class="str">"ClaimAmount"</span>, <span class="str">"Incurred Amount"</span>}
+    }),
+
+    SetTypes = Table.TransformColumnTypes(Renamed, {
+        {<span class="str">"ClaimDate"</span>,  type date},
+        {<span class="str">"ClosedDate"</span>, type date},
+        {<span class="str">"Incurred Amount"</span>, Currency.Type}
+    })
+<span class="kw">in</span>
+    SetTypes</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- TABLE -->
+  <div class="table-section">
+    <h2>Sample Output SLA Performance by Region</h2>
+    <table class="data-table">
+      <thead>
+        <tr><th>Region</th><th>Total Claims</th><th>Within SLA</th><th>SLA Breach</th><th>Breach %</th><th>Avg Processing Days</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>North</td><td>62,400</td><td>60,110</td><td>2,290</td><td>3.7%</td><td>14.2</td><td><span class="badge-green">On Target</span></td></tr>
+        <tr><td>South</td><td>58,700</td><td>54,100</td><td>4,600</td><td>7.8%</td><td>18.6</td><td><span class="badge-blue">Monitor</span></td></tr>
+        <tr><td>East</td><td>71,200</td><td>60,520</td><td>10,680</td><td>15.0%</td><td>26.1</td><td><span class="badge-red">Breach</span></td></tr>
+        <tr><td>West</td><td>55,900</td><td>54,100</td><td>1,800</td><td>3.2%</td><td>13.8</td><td><span class="badge-green">On Target</span></td></tr>
+        <tr><td>Central</td><td>52,100</td><td>46,300</td><td>5,800</td><td>11.1%</td><td>22.4</td><td><span class="badge-red">Breach</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+</div><!-- /proj-body -->
+
+<!-- BOTTOM NAV -->
+<div class="proj-footer-nav">
+  <div class="proj-footer-inner">
+    <a href="index.html" class="pnav-card">
+      <span class="pnav-arrow">←</span>
+      <div>
+        <div class="pnav-label">Back to</div>
+        <div class="pnav-title">All Projects</div>
+      </div>
+    </a>
+    <a href="project-2.html" class="pnav-card next">
+      <div>
+        <div class="pnav-label">Next Project</div>
+        <div class="pnav-title">Policy Renewal Prediction</div>
+      </div>
+      <span class="pnav-arrow">→</span>
+    </a>
+  </div>
+</div>
+
+<script>
+// ── Charts ──────────────────────────────────────────────
+const months = ['Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec','Jan','Feb','Mar'];
+const blue = '#0068b5', blueLight = 'rgba(0,104,181,0.15)', accent = '#f04e23';
+
+// 1. Claims Volume
+new Chart(document.getElementById('claimsVolumeChart'), {
+  type: 'bar',
+  data: {
+    labels: months,
+    datasets: [{
+      label: 'Claims Filed',
+      data: [21400,19800,23100,25600,24900,22300,27800,26100,28400,24700,22900,25800],
+      backgroundColor: blueLight,
+      borderColor: blue,
+      borderWidth: 2,
+      borderRadius: 6
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: true,
+    plugins: { legend: { display: false } },
+    scales: {
+      y: { grid: { color: '#f0f4f8' }, ticks: { color: '#64748b', font: {size:10} } },
+      x: { grid: { display: false }, ticks: { color: '#64748b', font: {size:10} } }
+    }
+  }
+});
+
+// 2. Processing Time Before vs After
+new Chart(document.getElementById('processingTimeChart'), {
+  type: 'line',
+  data: {
+    labels: months,
+    datasets: [
+      {
+        label: 'Before Dashboard',
+        data: [32,34,31,36,35,33,38,37,40,34,33,36],
+        borderColor: accent, backgroundColor: 'transparent',
+        borderWidth: 2, borderDash: [5,5], pointRadius: 3
+      },
+      {
+        label: 'After Dashboard',
+        data: [32,30,28,27,26,25,24,24,23,22,21,21],
+        borderColor: blue, backgroundColor: blueLight,
+        borderWidth: 2.5, fill: true, pointRadius: 3
+      }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: true,
+    plugins: { legend: { labels: { font: {size:10}, boxWidth: 14 } } },
+    scales: {
+      y: { grid: { color: '#f0f4f8' }, ticks: { color: '#64748b', font: {size:10} }, title: { display: true, text: 'Days', font: {size:10}, color: '#64748b' } },
+      x: { grid: { display: false }, ticks: { color: '#64748b', font: {size:10} } }
+    }
+  }
+});
+
+// 3. Status Breakdown
+new Chart(document.getElementById('statusChart'), {
+  type: 'doughnut',
+  data: {
+    labels: ['Closed – Paid', 'Closed – Denied', 'In Progress', 'Pending Review', 'Reopened'],
+    datasets: [{
+      data: [142000, 38000, 61000, 43000, 16000],
+      backgroundColor: ['#0068b5','#60a5fa','#93c5fd','#bfdbfe','#dbeafe'],
+      borderWidth: 0
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: true,
+    plugins: {
+      legend: { position: 'bottom', labels: { font: {size:10}, boxWidth: 12 } }
+    },
+    cutout: '62%'
+  }
+});
+
+// 4. SLA Compliance
+new Chart(document.getElementById('slaChart'), {
+  type: 'line',
+  data: {
+    labels: months,
+    datasets: [{
+      label: 'SLA Compliance %',
+      data: [82,83,85,86,87,88,90,91,93,94,95,96],
+      borderColor: '#16a34a', backgroundColor: 'rgba(22,163,74,0.1)',
+      borderWidth: 2.5, fill: true, tension: 0.4, pointRadius: 4,
+      pointBackgroundColor: '#16a34a'
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: true,
+    plugins: { legend: { display: false } },
+    scales: {
+      y: {
+        min: 78, max: 100,
+        grid: { color: '#f0f4f8' }, ticks: { color: '#64748b', font: {size:10}, callback: v => v+'%' }
+      },
+      x: { grid: { display: false }, ticks: { color: '#64748b', font: {size:10} } }
+    }
+  }
+});
+
+// ── Code tabs ──
+function showTab(btn, id) {
+  document.querySelectorAll('.code-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.code-block').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+</script>
+</body>
+</html>

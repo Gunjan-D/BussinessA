@@ -1,0 +1,433 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Policy Renewal Prediction | BI Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="project.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="topnav-inner">
+    <a href="index.html" class="back-btn"><span class="back-arrow">←</span> Back to Portfolio</a>
+    <span class="logo">Gunjan<span>.</span></span>
+    <div class="proj-nav-links">
+      <a href="project-1.html">← Prev</a>
+      <a href="project-3.html">Next →</a>
+    </div>
+  </div>
+</nav>
+
+<header class="proj-hero p2-hero">
+  <div class="proj-hero-inner">
+    <p class="proj-eyebrow">Project 02 · Base SAS + SAS EG + SQL Server + Power BI · ⭐ Featured</p>
+    <h1>Policy Renewal Prediction &amp; Retention Analysis</h1>
+    <p>A logistic regression model built in Base SAS (PROC LOGISTIC) that scores all active policies 60 days before renewal, identifying at-risk accounts so retention teams can intervene proactively improving renewal rate by 9.4%.</p>
+    <div class="proj-tags">
+      <span class="ptag">Base SAS</span>
+      <span class="ptag">SAS EG</span>
+      <span class="ptag">PROC LOGISTIC</span>
+      <span class="ptag">SQL Server</span>
+      <span class="ptag">Power BI</span>
+      <span class="ptag">Predictive Modelling</span>
+    </div>
+  </div>
+</header>
+
+<div class="metrics-strip">
+  <div class="metrics-strip-inner">
+    <div class="metric-item"><div class="metric-num">↑ 9.4%</div><div class="metric-lbl">Renewal Rate Improvement</div></div>
+    <div class="metric-item"><div class="metric-num">87%</div><div class="metric-lbl">Model AUC Accuracy</div></div>
+    <div class="metric-item"><div class="metric-num">60 days</div><div class="metric-lbl">Early Warning Window</div></div>
+    <div class="metric-item"><div class="metric-num">3 yrs</div><div class="metric-lbl">Historical Training Data</div></div>
+  </div>
+</div>
+
+<div class="proj-body">
+  <div class="content-grid">
+    <div class="content-left">
+      <div class="section-block">
+        <h2>Business Problem</h2>
+        <p>The retention team had no early-warning system for policies at risk of lapsing. Outreach was entirely reactive agents only contacted customers after a lapse had already occurred. This resulted in avoidable churn and revenue loss on policies that could have been retained with a timely intervention.</p>
+        <p>The goal was a scoring model that flagged at-risk policies at least 60 days before renewal, with enough precision to prioritise agent outreach effectively.</p>
+      </div>
+
+      <div class="section-block">
+        <h2>Solution Overview</h2>
+        <ul>
+          <li>Extracted 3 years of policy history using complex SQL joins across 5 normalised tables (Policy, Customer, Payment, Claims, Product)</li>
+          <li>Performed EDA in SAS EG identified 11 predictive features: payment behaviour, claims frequency, tenure, premium change %, product mix, and prior lapse history</li>
+          <li>Built logistic regression model using PROC LOGISTIC; validated with 5-fold cross-validation (AUC = 0.87, KS = 0.52)</li>
+          <li>Developed SAS macro to run weekly batch scoring on Monday mornings; scored output written to SQL Server staging table</li>
+          <li>Power BI dashboard consumed scored data, showing agents their top 50 at-risk accounts with recommended actions and lapse probability</li>
+          <li>Presented model methodology and business findings to leadership via PowerPoint</li>
+        </ul>
+      </div>
+
+      <div class="section-block">
+        <h2>Process Walkthrough</h2>
+        <div class="process-steps">
+          <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <h4>Data Extraction (SQL)</h4>
+              <p>Multi-table SQL query pulling 3 years of policy records (180K policies), joined to payment schedules, claims, customer demographics, and product data.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <h4>EDA & Feature Engineering (SAS EG)</h4>
+              <p>PROC FREQ, PROC UNIVARIATE, PROC MEANS for univariate analysis. Created derived features: missed_payments_6m, claims_ratio, tenure_band, premium_increase_pct.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <h4>Model Training (Base SAS)</h4>
+              <p>PROC LOGISTIC with stepwise variable selection, OUTROC / ROC statement for AUC. 5-fold cross-validation via SAS macro loop. Final model: 8 variables, AUC = 0.87.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">4</div>
+            <div class="step-content">
+              <h4>Batch Scoring Automation</h4>
+              <p>SAS macro scores all policies with renewal dates 50–70 days out. Output table includes lapse probability, risk band (High/Medium/Low), and top 3 risk drivers per policy.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">5</div>
+            <div class="step-content">
+              <h4>Power BI Dashboard</h4>
+              <p>Agents see their territory's at-risk list sorted by lapse probability. Dashboard filters by risk band, product line, and premium tier. Managers see team-level retention KPIs.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-right">
+      <div class="sidebar-card">
+        <h3>Tech Stack</h3>
+        <div class="tech-badges">
+          <span class="tbadge primary">Base SAS</span>
+          <span class="tbadge primary">SAS Enterprise Guide</span>
+          <span class="tbadge">PROC LOGISTIC</span>
+          <span class="tbadge">PROC MEANS / FREQ</span>
+          <span class="tbadge">SAS Macros</span>
+          <span class="tbadge">SQL Server</span>
+          <span class="tbadge">T-SQL</span>
+          <span class="tbadge">Power BI</span>
+          <span class="tbadge">PowerPoint</span>
+        </div>
+      </div>
+
+      <div class="sidebar-card">
+        <h3>Model Performance</h3>
+        <div class="result-items">
+          <div class="result-item"><span class="result-icon">🎯</span><div class="result-text"><strong>AUC: 0.87</strong> strong discriminatory power</div></div>
+          <div class="result-item"><span class="result-icon">📐</span><div class="result-text"><strong>KS Statistic: 0.52</strong> at decile 3</div></div>
+          <div class="result-item"><span class="result-icon">🔍</span><div class="result-text"><strong>Precision (High Risk): 71%</strong> of flagged policies lapsed</div></div>
+          <div class="result-item"><span class="result-icon">📞</span><div class="result-text"><strong>Top decile</strong> captures 3.8× uplift vs random</div></div>
+          <div class="result-item"><span class="result-icon">📈</span><div class="result-text"><strong>Retention: +9.4%</strong> on model-targeted policies</div></div>
+        </div>
+      </div>
+
+      <div class="sidebar-card">
+        <h3>Top Predictive Features</h3>
+        <div class="result-items">
+          <div class="result-item"><span class="result-icon">①</span><div class="result-text">Missed payments in last 6 months</div></div>
+          <div class="result-item"><span class="result-icon">②</span><div class="result-text">Premium increase % at last renewal</div></div>
+          <div class="result-item"><span class="result-icon">③</span><div class="result-text">Claims frequency in policy tenure</div></div>
+          <div class="result-item"><span class="result-icon">④</span><div class="result-text">Customer tenure (years)</div></div>
+          <div class="result-item"><span class="result-icon">⑤</span><div class="result-text">Number of products held</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHARTS -->
+  <div class="chart-section">
+    <h2>Model Performance &amp; Data Insights</h2>
+    <div class="charts-grid">
+      <div class="chart-card">
+        <h4>Feature Importance (Odds Ratio)</h4>
+        <canvas id="featureChart"></canvas>
+      </div>
+      <div class="chart-card">
+        <h4>Lapse Rate by Risk Band</h4>
+        <canvas id="riskBandChart"></canvas>
+      </div>
+      <div class="chart-card">
+        <h4>Retention Rate: Before vs After Model (Monthly)</h4>
+        <canvas id="retentionChart"></canvas>
+      </div>
+      <div class="chart-card">
+        <h4>Score Distribution – Lapsed vs Retained Policies</h4>
+        <canvas id="scoreDistChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- CODE -->
+  <div class="code-section">
+    <h2>Code Samples</h2>
+    <div class="code-tabs">
+      <button class="code-tab active" onclick="showTab(this,'sas2')">Base SAS – PROC LOGISTIC</button>
+      <button class="code-tab" onclick="showTab(this,'macro2')">SAS Macro – Batch Scoring</button>
+      <button class="code-tab" onclick="showTab(this,'sql2')">T-SQL – Feature Extraction</button>
+    </div>
+    <div class="code-block-wrap">
+      <div class="code-block active" id="sas2">
+        <pre><code><span class="cm">/* Logistic Regression – Policy Lapse Prediction */</span>
+<span class="cm">/* Step 1: Create model training dataset */</span>
+<span class="kw">DATA</span> work.model_train;
+  <span class="kw">SET</span> policy.features_2021_2023;
+  <span class="kw">WHERE</span> renewal_date <span class="kw">BETWEEN</span> <span class="str">'01JAN2021'd</span> <span class="kw">AND</span> <span class="str">'31DEC2023'd</span>
+    <span class="kw">AND</span> is_holdout = <span class="num">0</span>;
+<span class="kw">RUN</span>;
+
+<span class="cm">/* Step 2: Logistic regression with stepwise selection */</span>
+<span class="kw">PROC LOGISTIC</span> data=work.model_train
+              outmodel=work.lapse_model
+              plots=(roc oddsratio);
+  <span class="kw">CLASS</span> product_line tenure_band / param=ref;
+  <span class="kw">MODEL</span> lapsed(event=<span class="str">'1'</span>) =
+        missed_payments_6m
+        premium_increase_pct
+        claims_freq_tenure
+        cust_tenure_yrs
+        products_held
+        prior_lapse_flag
+        product_line
+        tenure_band
+  / <span class="kw">selection</span>=stepwise slentry=<span class="num">0.05</span> slstay=<span class="num">0.05</span>
+    <span class="kw">outroc</span>=work.roc_data
+    ctable pprob=(<span class="num">0.3</span> <span class="num">0.4</span> <span class="num">0.5</span>);
+  <span class="kw">OUTPUT</span> <span class="kw">out</span>=work.scored_train
+         predicted=lapse_prob
+         xbeta=log_odds;
+<span class="kw">RUN</span>;
+
+<span class="cm">/* Step 3: Validate AUC */</span>
+<span class="kw">PROC SQL</span>;
+  <span class="kw">SELECT</span> <span class="fn">MAX</span>(c_hat) <span class="kw">AS</span> AUC
+  <span class="kw">FROM</span>   work.roc_data;
+<span class="kw">QUIT</span>;</code></pre>
+      </div>
+      <div class="code-block" id="macro2">
+        <pre><code><span class="cm">/* Weekly batch scoring macro */</span>
+<span class="cm">/* Runs every Monday 05:00 via SAS Scheduler */</span>
+<span class="kw">%MACRO</span> <span class="fn">score_renewal_risk</span>(run_date=);
+
+  <span class="cm">/* 1. Pull policies renewing in 50-70 days */</span>
+  <span class="kw">PROC SQL</span>;
+    <span class="kw">CONNECT TO</span> sqlserver
+      (server=<span class="str">"SQLSRV01"</span> database=<span class="str">"PolicyDB"</span>);
+    <span class="kw">CREATE TABLE</span> work.to_score <span class="kw">AS</span>
+    <span class="kw">SELECT</span> * <span class="kw">FROM</span> connection to sqlserver (
+      <span class="kw">SELECT</span> * <span class="kw">FROM</span> dbo.vw_PolicyFeatures
+      <span class="kw">WHERE</span>  renewal_date
+             <span class="kw">BETWEEN</span> <span class="fn">DATEADD</span>(day,<span class="num">50</span>,<span class="str">'&amp;run_date'</span>)
+                 <span class="kw">AND</span> <span class="fn">DATEADD</span>(day,<span class="num">70</span>,<span class="str">'&amp;run_date'</span>)
+    );
+    <span class="kw">DISCONNECT FROM</span> sqlserver;
+  <span class="kw">QUIT</span>;
+
+  <span class="cm">/* 2. Score using saved model */</span>
+  <span class="kw">PROC LOGISTIC</span> inmodel=work.lapse_model;
+    <span class="kw">SCORE</span> data=work.to_score
+          out=work.scored_output
+          predicted;
+  <span class="kw">RUN</span>;
+
+  <span class="cm">/* 3. Assign risk bands */</span>
+  <span class="kw">DATA</span> work.scored_final;
+    <span class="kw">SET</span> work.scored_output;
+    <span class="kw">LENGTH</span> risk_band <span class="kw">$</span><span class="num">6</span>;
+    <span class="kw">IF</span>      P_1 >= <span class="num">0.65</span> <span class="kw">THEN</span> risk_band = <span class="str">'HIGH'</span>;
+    <span class="kw">ELSE IF</span> P_1 >= <span class="num">0.40</span> <span class="kw">THEN</span> risk_band = <span class="str">'MEDIUM'</span>;
+    <span class="kw">ELSE</span>                     risk_band = <span class="str">'LOW'</span>;
+    score_date = today();
+  <span class="kw">RUN</span>;
+
+  <span class="cm">/* 4. Write to SQL Server for Power BI */</span>
+  <span class="kw">PROC SQL</span>;
+    <span class="kw">CONNECT TO</span> sqlserver
+      (server=<span class="str">"SQLSRV01"</span> database=<span class="str">"PolicyDB"</span>);
+    <span class="kw">EXECUTE</span>(
+      <span class="kw">TRUNCATE TABLE</span> dbo.lapse_scores
+    ) <span class="kw">BY</span> sqlserver;
+  <span class="kw">QUIT</span>;
+  <span class="kw">PROC APPEND</span> base=sqlsrv.lapse_scores
+              data=work.scored_final force; <span class="kw">RUN</span>;
+
+<span class="kw">%MEND</span> <span class="fn">score_renewal_risk</span>;
+
+<span class="cm">/* Invoke macro */</span>
+<span class="kw">%</span><span class="fn">score_renewal_risk</span>(run_date=<span class="str">%sysfunc(today(),date9.)</span>);</code></pre>
+      </div>
+      <div class="code-block" id="sql2">
+        <pre><code><span class="cm">-- Feature extraction view for model training</span>
+<span class="kw">CREATE VIEW</span> <span class="fn">dbo.vw_PolicyFeatures</span> <span class="kw">AS</span>
+<span class="kw">SELECT</span>
+    p.PolicyID,
+    p.CustomerID,
+    p.RenewalDate,
+    p.ProductLine,
+    <span class="cm">-- Missed payments in last 6 months</span>
+    <span class="fn">SUM</span>(<span class="kw">CASE</span> <span class="kw">WHEN</span> pay.PaymentStatus = <span class="str">'MISSED'</span>
+              <span class="kw">AND</span>  pay.DueDate >= <span class="fn">DATEADD</span>(month,<span class="op">-</span><span class="num">6</span>,<span class="fn">GETDATE</span>())
+         <span class="kw">THEN</span> <span class="num">1</span> <span class="kw">ELSE</span> <span class="num">0</span> <span class="kw">END</span>)        <span class="kw">AS</span> missed_payments_6m,
+    <span class="cm">-- Premium change at last renewal</span>
+    <span class="fn">ROUND</span>(
+      (p.CurrentPremium - p.PriorPremium)
+      / <span class="fn">NULLIF</span>(p.PriorPremium,<span class="num">0</span>) * <span class="num">100</span>, <span class="num">2</span>
+    )                                   <span class="kw">AS</span> premium_increase_pct,
+    <span class="cm">-- Claims frequency</span>
+    <span class="fn">COUNT</span>(c.ClaimID) * <span class="num">1.0</span>
+      / <span class="fn">NULLIF</span>(p.TenureYears,<span class="num">0</span>)         <span class="kw">AS</span> claims_freq_tenure,
+    p.TenureYears                       <span class="kw">AS</span> cust_tenure_yrs,
+    pc.ProductsHeld                     <span class="kw">AS</span> products_held,
+    p.PriorLapseFlag                    <span class="kw">AS</span> prior_lapse_flag,
+    p.Lapsed                            <span class="kw">AS</span> lapsed  <span class="cm">-- target variable</span>
+<span class="kw">FROM</span>       dbo.Policies   p
+<span class="kw">LEFT JOIN</span>  dbo.Payments   pay <span class="kw">ON</span> p.PolicyID = pay.PolicyID
+<span class="kw">LEFT JOIN</span>  dbo.Claims     c   <span class="kw">ON</span> p.PolicyID = c.PolicyID
+<span class="kw">INNER JOIN</span> dbo.ProductCnt pc  <span class="kw">ON</span> p.CustomerID = pc.CustomerID
+<span class="kw">GROUP BY</span>
+    p.PolicyID, p.CustomerID, p.RenewalDate,
+    p.ProductLine, p.CurrentPremium, p.PriorPremium,
+    p.TenureYears, pc.ProductsHeld,
+    p.PriorLapseFlag, p.Lapsed;</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- TABLE -->
+  <div class="table-section">
+    <h2>Sample Model Output At-Risk Policy List (Agent View)</h2>
+    <table class="data-table">
+      <thead>
+        <tr><th>Policy ID</th><th>Renewal Date</th><th>Lapse Probability</th><th>Risk Band</th><th>Top Risk Driver</th><th>Premium</th><th>Agent Action</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>POL-84921</td><td>29 Apr 2026</td><td>82%</td><td><span class="badge-red">HIGH</span></td><td>3 missed payments</td><td>₹24,800</td><td>Priority Call</td></tr>
+        <tr><td>POL-61033</td><td>02 May 2026</td><td>74%</td><td><span class="badge-red">HIGH</span></td><td>+28% premium increase</td><td>₹18,200</td><td>Retention Offer</td></tr>
+        <tr><td>POL-55247</td><td>05 May 2026</td><td>61%</td><td><span class="badge-red">HIGH</span></td><td>Prior lapse history</td><td>₹31,500</td><td>Priority Call</td></tr>
+        <tr><td>POL-72819</td><td>08 May 2026</td><td>48%</td><td><span class="badge-blue">MEDIUM</span></td><td>Single product holder</td><td>₹12,400</td><td>Cross-sell Call</td></tr>
+        <tr><td>POL-39042</td><td>11 May 2026</td><td>41%</td><td><span class="badge-blue">MEDIUM</span></td><td>2 missed payments</td><td>₹9,600</td><td>Email Campaign</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="proj-footer-nav">
+  <div class="proj-footer-inner">
+    <a href="project-1.html" class="pnav-card">
+      <span class="pnav-arrow">←</span>
+      <div><div class="pnav-label">Previous Project</div><div class="pnav-title">Claims Analytics Dashboard</div></div>
+    </a>
+    <a href="project-3.html" class="pnav-card next">
+      <div><div class="pnav-label">Next Project</div><div class="pnav-title">Automated KPI Pipeline</div></div>
+      <span class="pnav-arrow">→</span>
+    </a>
+  </div>
+</div>
+
+<script>
+const blue='#0068b5', blueLight='rgba(0,104,181,0.15)', accent='#f04e23';
+
+new Chart(document.getElementById('featureChart'),{
+  type:'bar',
+  data:{
+    labels:['Missed Pmts 6m','Premium Increase%','Claims Frequency','Cust Tenure','Products Held','Prior Lapse','Product Line','Tenure Band'],
+    datasets:[{
+      label:'Odds Ratio',
+      data:[3.8, 2.6, 2.1, 0.7, 0.6, 2.9, 1.4, 0.9],
+      backgroundColor:['#ef4444','#f97316','#eab308','#22c55e','#22c55e','#ef4444','#64748b','#64748b'],
+      borderRadius:5
+    }]
+  },
+  options:{
+    indexAxis:'y', responsive:true, maintainAspectRatio:true,
+    plugins:{legend:{display:false}},
+    scales:{
+      x:{grid:{color:'#f0f4f8'}, ticks:{color:'#64748b',font:{size:10}}, title:{display:true,text:'Odds Ratio',font:{size:10},color:'#64748b'}},
+      y:{grid:{display:false}, ticks:{color:'#64748b',font:{size:10}}}
+    }
+  }
+});
+
+new Chart(document.getElementById('riskBandChart'),{
+  type:'bar',
+  data:{
+    labels:['HIGH Risk','MEDIUM Risk','LOW Risk'],
+    datasets:[{
+      label:'Actual Lapse Rate %',
+      data:[71, 38, 9],
+      backgroundColor:['#ef4444','#f97316',blue],
+      borderRadius:6
+    }]
+  },
+  options:{
+    responsive:true, maintainAspectRatio:true,
+    plugins:{legend:{display:false}},
+    scales:{
+      y:{max:90, grid:{color:'#f0f4f8'}, ticks:{color:'#64748b',font:{size:10},callback:v=>v+'%'}},
+      x:{grid:{display:false}, ticks:{color:'#64748b',font:{size:10}}}
+    }
+  }
+});
+
+new Chart(document.getElementById('retentionChart'),{
+  type:'line',
+  data:{
+    labels:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep'],
+    datasets:[
+      {label:'Before Model',data:[81.2,80.8,81.5,81.0,80.6,81.1,80.9,81.3,81.0],borderColor:accent,borderWidth:2,borderDash:[5,5],backgroundColor:'transparent',pointRadius:3},
+      {label:'After Model',data:[81.2,81.8,82.4,83.1,83.8,84.5,85.1,85.9,86.6],borderColor:blue,borderWidth:2.5,backgroundColor:blueLight,fill:true,tension:0.35,pointRadius:3}
+    ]
+  },
+  options:{
+    responsive:true, maintainAspectRatio:true,
+    plugins:{legend:{labels:{font:{size:10},boxWidth:14}}},
+    scales:{
+      y:{min:79,grid:{color:'#f0f4f8'},ticks:{color:'#64748b',font:{size:10},callback:v=>v+'%'}},
+      x:{grid:{display:false},ticks:{color:'#64748b',font:{size:10}}}
+    }
+  }
+});
+
+new Chart(document.getElementById('scoreDistChart'),{
+  type:'bar',
+  data:{
+    labels:['0–10%','10–20%','20–30%','30–40%','40–50%','50–60%','60–70%','70–80%','80–90%','90–100%'],
+    datasets:[
+      {label:'Retained',data:[8200,7100,6400,5800,4200,2800,1600,900,400,150],backgroundColor:'rgba(0,104,181,0.6)',borderRadius:4},
+      {label:'Lapsed', data:[210,380,620,940,1380,1920,2600,3100,2800,1850],backgroundColor:'rgba(239,68,68,0.6)',borderRadius:4}
+    ]
+  },
+  options:{
+    responsive:true, maintainAspectRatio:true,
+    plugins:{legend:{labels:{font:{size:10},boxWidth:14}}},
+    scales:{
+      x:{stacked:false,grid:{display:false},ticks:{color:'#64748b',font:{size:9}}},
+      y:{stacked:false,grid:{color:'#f0f4f8'},ticks:{color:'#64748b',font:{size:10}}}
+    }
+  }
+});
+
+function showTab(btn,id){
+  document.querySelectorAll('.code-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.code-block').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+</script>
+</body>
+</html>

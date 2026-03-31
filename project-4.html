@@ -1,0 +1,399 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Customer Segmentation | BI Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="project.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="topnav-inner">
+    <a href="index.html" class="back-btn"><span class="back-arrow">←</span> Back to Portfolio</a>
+    <span class="logo">Gunjan<span>.</span></span>
+    <div class="proj-nav-links">
+      <a href="project-3.html">← Prev</a>
+      <a href="project-5.html">Next →</a>
+    </div>
+  </div>
+</nav>
+
+<header class="proj-hero p4-hero">
+  <div class="proj-hero-inner">
+    <p class="proj-eyebrow">Project 04 · T-SQL + SAS PROC CLUSTER + Power BI</p>
+    <h1>Customer Segmentation &amp; Marketing Analytics</h1>
+    <p>Segmented 500K policyholders into 6 behavioural clusters using SQL-based RFM scoring and SAS statistical clustering. A Power BI executive dashboard enables campaign targeting by segment, driving a 31% improvement in campaign response rates.</p>
+    <div class="proj-tags">
+      <span class="ptag">T-SQL</span>
+      <span class="ptag">SAS PROC CLUSTER</span>
+      <span class="ptag">SAS PROC FASTCLUS</span>
+      <span class="ptag">RFM Analysis</span>
+      <span class="ptag">Power BI</span>
+      <span class="ptag">Marketing Analytics</span>
+    </div>
+  </div>
+</header>
+
+<div class="metrics-strip">
+  <div class="metrics-strip-inner">
+    <div class="metric-item"><div class="metric-num">↑ 31%</div><div class="metric-lbl">Campaign Response Rate</div></div>
+    <div class="metric-item"><div class="metric-num">500K</div><div class="metric-lbl">Customers Analysed</div></div>
+    <div class="metric-item"><div class="metric-num">6</div><div class="metric-lbl">Customer Segments</div></div>
+    <div class="metric-item"><div class="metric-num">↓ 55%</div><div class="metric-lbl">Opt-out Rate</div></div>
+  </div>
+</div>
+
+<div class="proj-body">
+  <div class="content-grid">
+    <div class="content-left">
+      <div class="section-block">
+        <h2>Business Problem</h2>
+        <p>The marketing team ran identical batch campaigns to all 500K policyholders, achieving only a 3.1% response rate and generating significant opt-out complaints. There was no customer segmentation, propensity scoring, or personalised messaging in place.</p>
+        <p>The goal was to identify meaningful customer groups and enable targeted campaigns with the right message to the right segment improving ROI and reducing churn from unwanted communications.</p>
+      </div>
+
+      <div class="section-block">
+        <h2>Solution Overview</h2>
+        <ul>
+          <li>Built an RFM (Recency, Frequency, Monetary) scoring model using T-SQL window functions on 500K policyholder records from the data warehouse</li>
+          <li>Applied SAS PROC FASTCLUS (k-means) to identify K=6 optimal clusters, validated with PROC CLUSTER dendrograms and Calinski-Harabasz index</li>
+          <li>Named and profiled each segment: Champions, Loyalists, At-Risk, Price-Sensitive, New Customers, Dormant</li>
+          <li>Built a Power BI marketing dashboard: segment filter, campaign ROI tracker, conversion funnel, and demographic overlay</li>
+          <li>Presented segment profiles and campaign recommendations to the CMO via PowerPoint</li>
+          <li>Campaign results tracked monthly segment-targeted campaigns showed 31% higher response rate vs prior baseline</li>
+        </ul>
+      </div>
+
+      <div class="section-block">
+        <h2>Process Walkthrough</h2>
+        <div class="process-steps">
+          <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <h4>RFM Scoring (T-SQL)</h4>
+              <p>Calculated Recency (days since last payment), Frequency (number of active policies), Monetary (total lifetime premium) using SQL window functions. Each dimension scored 1–5 using NTILE(5).</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <h4>Cluster Analysis (SAS EG)</h4>
+              <p>Exported RFM scores to SAS. Used PROC FASTCLUS with K=6 (determined by elbow method on PROC CLUSTER). Iterated with different seeds to ensure stability.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <h4>Segment Profiling</h4>
+              <p>PROC MEANS and PROC FREQ analysed cluster characteristics. Added demographic overlays (age band, location, product mix) to create detailed segment personas for the marketing team.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">4</div>
+            <div class="step-content">
+              <h4>Power BI Dashboard</h4>
+              <p>Segment assignment table joined to campaign response logs. Dashboard shows: segment breakdown, response rate by segment over time, campaign ROI, and conversion funnel from contact to purchase.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">5</div>
+            <div class="step-content">
+              <h4>Stakeholder Presentation</h4>
+              <p>Presented 6 segment personas with recommended campaign strategies to the CMO and Marketing leadership. Findings led to a new segment-based targeting framework adopted company-wide.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-right">
+      <div class="sidebar-card">
+        <h3>Tech Stack</h3>
+        <div class="tech-badges">
+          <span class="tbadge primary">T-SQL</span>
+          <span class="tbadge primary">Base SAS</span>
+          <span class="tbadge">SAS EG</span>
+          <span class="tbadge">PROC FASTCLUS</span>
+          <span class="tbadge">PROC CLUSTER</span>
+          <span class="tbadge">PROC MEANS</span>
+          <span class="tbadge">Power BI</span>
+          <span class="tbadge">SQL Server</span>
+          <span class="tbadge">Window Functions</span>
+          <span class="tbadge">NTILE / DENSE_RANK</span>
+        </div>
+      </div>
+
+      <div class="sidebar-card">
+        <h3>Segment Snapshot</h3>
+        <div class="result-items">
+          <div class="result-item"><span class="result-icon">🏆</span><div class="result-text"><strong>Champions</strong> High value, frequent, recent</div></div>
+          <div class="result-item"><span class="result-icon">💙</span><div class="result-text"><strong>Loyalists</strong> Long tenure, stable, moderate spend</div></div>
+          <div class="result-item"><span class="result-icon">⚠️</span><div class="result-text"><strong>At-Risk</strong> Previously active, declining engagement</div></div>
+          <div class="result-item"><span class="result-icon">💰</span><div class="result-text"><strong>Price-Sensitive</strong> Low premium, high elasticity</div></div>
+          <div class="result-item"><span class="result-icon">🆕</span><div class="result-text"><strong>New Customers</strong> &lt;12 months tenure</div></div>
+          <div class="result-item"><span class="result-icon">😴</span><div class="result-text"><strong>Dormant</strong> No activity &gt;18 months</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHARTS -->
+  <div class="chart-section">
+    <h2>Segmentation Analysis &amp; Campaign Results</h2>
+    <div class="charts-grid">
+      <div class="chart-card">
+        <h4>Customer Distribution by Segment</h4>
+        <canvas id="segPieChart"></canvas>
+      </div>
+      <div class="chart-card">
+        <h4>Campaign Response Rate by Segment (%)</h4>
+        <canvas id="responseChart"></canvas>
+      </div>
+      <div class="chart-card">
+        <h4>Average Premium Value by Segment (₹)</h4>
+        <canvas id="premiumChart"></canvas>
+      </div>
+      <div class="chart-card">
+        <h4>Overall Response Rate: Before vs After Segmentation</h4>
+        <canvas id="beforeAfterChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- CODE -->
+  <div class="code-section">
+    <h2>Code Samples</h2>
+    <div class="code-tabs">
+      <button class="code-tab active" onclick="showTab(this,'sql4')">T-SQL – RFM Scoring</button>
+      <button class="code-tab" onclick="showTab(this,'sas4')">SAS – K-means Clustering</button>
+      <button class="code-tab" onclick="showTab(this,'dax4')">DAX – Campaign ROI</button>
+    </div>
+    <div class="code-block-wrap">
+      <div class="code-block active" id="sql4">
+        <pre><code><span class="cm">-- RFM Scoring using T-SQL Window Functions</span>
+<span class="kw">WITH</span> rfm_base <span class="kw">AS</span> (
+    <span class="kw">SELECT</span>
+        c.CustomerID,
+        c.CustomerName,
+        c.Region,
+        <span class="cm">-- Recency: days since last payment</span>
+        <span class="fn">DATEDIFF</span>(day,
+            <span class="fn">MAX</span>(p.PaymentDate),
+            <span class="fn">CAST</span>(<span class="fn">GETDATE</span>() <span class="kw">AS DATE</span>)
+        )                                   <span class="kw">AS</span> recency_days,
+        <span class="cm">-- Frequency: active policy count</span>
+        <span class="fn">COUNT</span>(<span class="kw">DISTINCT</span> pol.PolicyID)        <span class="kw">AS</span> frequency,
+        <span class="cm">-- Monetary: total lifetime premium</span>
+        <span class="fn">SUM</span>(pol.AnnualPremium)              <span class="kw">AS</span> monetary
+    <span class="kw">FROM</span>       dbo.Customers  c
+    <span class="kw">INNER JOIN</span> dbo.Policies   pol <span class="kw">ON</span> c.CustomerID = pol.CustomerID
+    <span class="kw">LEFT JOIN</span>  dbo.Payments   p   <span class="kw">ON</span> pol.PolicyID = p.PolicyID
+    <span class="kw">WHERE</span>  pol.PolicyStatus <span class="kw">IN</span> (<span class="str">'ACTIVE'</span>, <span class="str">'LAPSED'</span>)
+    <span class="kw">GROUP BY</span> c.CustomerID, c.CustomerName, c.Region
+),
+rfm_scored <span class="kw">AS</span> (
+    <span class="kw">SELECT</span> *,
+        <span class="cm">-- Lower recency = more recent = higher score</span>
+        <span class="num">6</span> - <span class="fn">NTILE</span>(<span class="num">5</span>) <span class="kw">OVER</span> (<span class="kw">ORDER BY</span> recency_days <span class="kw">DESC</span>) <span class="kw">AS</span> R_score,
+        <span class="fn">NTILE</span>(<span class="num">5</span>) <span class="kw">OVER</span> (<span class="kw">ORDER BY</span> frequency  <span class="kw">ASC</span>)                <span class="kw">AS</span> F_score,
+        <span class="fn">NTILE</span>(<span class="num">5</span>) <span class="kw">OVER</span> (<span class="kw">ORDER BY</span> monetary   <span class="kw">ASC</span>)                <span class="kw">AS</span> M_score
+    <span class="kw">FROM</span> rfm_base
+)
+<span class="kw">SELECT</span>
+    CustomerID, CustomerName, Region,
+    recency_days, frequency, monetary,
+    R_score, F_score, M_score,
+    (R_score + F_score + M_score)       <span class="kw">AS</span> rfm_total,
+    <span class="cm">-- Composite segment label</span>
+    <span class="kw">CASE</span>
+        <span class="kw">WHEN</span> R_score >= <span class="num">4</span> <span class="kw">AND</span> F_score >= <span class="num">4</span> <span class="kw">AND</span> M_score >= <span class="num">4</span>
+        <span class="kw">THEN</span> <span class="str">'Champions'</span>
+        <span class="kw">WHEN</span> R_score >= <span class="num">3</span> <span class="kw">AND</span> F_score >= <span class="num">3</span>
+        <span class="kw">THEN</span> <span class="str">'Loyalists'</span>
+        <span class="kw">WHEN</span> R_score &lt;= <span class="num">2</span> <span class="kw">AND</span> F_score >= <span class="num">3</span>
+        <span class="kw">THEN</span> <span class="str">'At-Risk'</span>
+        <span class="kw">WHEN</span> M_score &lt;= <span class="num">2</span>
+        <span class="kw">THEN</span> <span class="str">'Price-Sensitive'</span>
+        <span class="kw">WHEN</span> recency_days &lt;= <span class="num">365</span> <span class="kw">AND</span> F_score = <span class="num">1</span>
+        <span class="kw">THEN</span> <span class="str">'New Customer'</span>
+        <span class="kw">ELSE</span> <span class="str">'Dormant'</span>
+    <span class="kw">END</span>                                 <span class="kw">AS</span> rfm_segment
+<span class="kw">FROM</span> rfm_scored
+<span class="kw">ORDER BY</span> rfm_total <span class="kw">DESC</span>;</code></pre>
+      </div>
+      <div class="code-block" id="sas4">
+        <pre><code><span class="cm">/* K-means clustering on RFM scores */</span>
+
+<span class="cm">/* Step 1: Determine optimal K using pseudo-R² */</span>
+<span class="kw">PROC CLUSTER</span> data=work.rfm_normalised
+             method=ward outtree=work.tree
+             plots=all;
+  <span class="kw">VAR</span> r_norm f_norm m_norm;
+<span class="kw">RUN</span>;
+
+<span class="cm">/* Step 2: K=6 final clustering */</span>
+<span class="kw">PROC FASTCLUS</span> data=work.rfm_normalised maxclusters=<span class="num">6</span>
+              maxiter=<span class="num">100</span> converge=<span class="num">0.001</span>
+              out=work.clustered
+              outstat=work.cluster_stats;
+  <span class="kw">VAR</span> r_norm f_norm m_norm;
+<span class="kw">RUN</span>;
+
+<span class="cm">/* Step 3: Profile each cluster */</span>
+<span class="kw">PROC MEANS</span> data=work.clustered mean std min max;
+  <span class="kw">CLASS</span> cluster;
+  <span class="kw">VAR</span>   recency_days frequency monetary;
+  <span class="kw">OUTPUT OUT</span>=work.cluster_profile mean= std= / autoname;
+<span class="kw">RUN</span>;
+
+<span class="cm">/* Step 4: Assign segment labels */</span>
+<span class="kw">PROC SQL</span>;
+  <span class="kw">SELECT</span>
+      cluster,
+      <span class="fn">COUNT</span>(*)                              <span class="kw">AS</span> n_customers,
+      <span class="fn">ROUND</span>(<span class="fn">MEAN</span>(recency_days),<span class="num">1</span>)          <span class="kw">AS</span> avg_recency,
+      <span class="fn">ROUND</span>(<span class="fn">MEAN</span>(frequency),<span class="num">1</span>)             <span class="kw">AS</span> avg_freq,
+      <span class="fn">ROUND</span>(<span class="fn">MEAN</span>(monetary),<span class="num">0</span>)              <span class="kw">AS</span> avg_monetary
+  <span class="kw">FROM</span>  work.clustered
+  <span class="kw">GROUP BY</span> cluster
+  <span class="kw">ORDER BY</span> avg_monetary <span class="kw">DESC</span>;
+<span class="kw">QUIT</span>;</code></pre>
+      </div>
+      <div class="code-block" id="dax4">
+        <pre><code><span class="cm">-- Campaign ROI by Segment</span>
+<span class="fn">Campaign ROI %</span> =
+<span class="kw">DIVIDE</span>(
+    <span class="fn">SUMX</span>(
+        Campaigns,
+        Campaigns[Revenue_Generated] - Campaigns[Campaign_Cost]
+    ),
+    <span class="fn">SUM</span>( Campaigns[Campaign_Cost] ),
+    <span class="num">0</span>
+) * <span class="num">100</span>
+
+<span class="cm">-- Response Rate</span>
+<span class="fn">Response Rate %</span> =
+<span class="kw">DIVIDE</span>(
+    <span class="fn">COUNTROWS</span>( <span class="fn">FILTER</span>( CampaignResults, CampaignResults[Responded] = <span class="kw">TRUE</span> ) ),
+    <span class="fn">COUNTROWS</span>( CampaignResults ),
+    <span class="num">0</span>
+)
+
+<span class="cm">-- Segment Size %</span>
+<span class="fn">Segment Share %</span> =
+<span class="kw">DIVIDE</span>(
+    <span class="fn">COUNTROWS</span>( Customers ),
+    <span class="fn">CALCULATE</span>( <span class="fn">COUNTROWS</span>( Customers ), <span class="fn">ALL</span>( Customers[Segment] ) ),
+    <span class="num">0</span>
+)
+
+<span class="cm">-- YoY Retention by Segment</span>
+<span class="fn">YoY Retention Change</span> =
+<span class="kw">VAR</span> CY = <span class="fn">CALCULATE</span>( [Retention Rate], <span class="fn">DATESYTD</span>( DateTable[Date] ) )
+<span class="kw">VAR</span> PY = <span class="fn">CALCULATE</span>( [Retention Rate],
+           <span class="fn">SAMEPERIODLASTYEAR</span>( DateTable[Date] ) )
+<span class="kw">RETURN</span> CY - PY</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- TABLE -->
+  <div class="table-section">
+    <h2>Segment Profile Summary</h2>
+    <table class="data-table">
+      <thead>
+        <tr><th>Segment</th><th>Customers</th><th>Avg Premium ₹</th><th>Avg Tenure (yrs)</th><th>Response Rate</th><th>Campaign Strategy</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>🏆 Champions</td><td>48,200</td><td>42,600</td><td>8.4</td><td><span class="badge-green">64%</span></td><td>Loyalty rewards, referral programme</td></tr>
+        <tr><td>💙 Loyalists</td><td>112,400</td><td>28,200</td><td>6.1</td><td><span class="badge-green">51%</span></td><td>Upsell, multi-policy discounts</td></tr>
+        <tr><td>⚠️ At-Risk</td><td>76,800</td><td>24,800</td><td>4.8</td><td><span class="badge-blue">38%</span></td><td>Win-back offer, personalised call</td></tr>
+        <tr><td>💰 Price-Sensitive</td><td>98,600</td><td>9,400</td><td>2.9</td><td><span class="badge-blue">22%</span></td><td>Value bundle, premium reduction</td></tr>
+        <tr><td>🆕 New Customers</td><td>91,200</td><td>15,100</td><td>0.7</td><td><span class="badge-blue">29%</span></td><td>Onboarding nurture, education</td></tr>
+        <tr><td>😴 Dormant</td><td>72,800</td><td>7,200</td><td>5.2</td><td><span class="badge-red">8%</span></td><td>Low-cost reactivation email</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="proj-footer-nav">
+  <div class="proj-footer-inner">
+    <a href="project-3.html" class="pnav-card">
+      <span class="pnav-arrow">←</span>
+      <div><div class="pnav-label">Previous Project</div><div class="pnav-title">Automated KPI Pipeline</div></div>
+    </a>
+    <a href="project-5.html" class="pnav-card next">
+      <div><div class="pnav-label">Next Project</div><div class="pnav-title">Fraud Detection Analytics</div></div>
+      <span class="pnav-arrow">→</span>
+    </a>
+  </div>
+</div>
+
+<script>
+const blue='#0068b5',blueLight='rgba(0,104,181,0.15)';
+const segColors=['#0068b5','#60a5fa','#f97316','#a78bfa','#34d399','#94a3b8'];
+
+new Chart(document.getElementById('segPieChart'),{
+  type:'doughnut',
+  data:{
+    labels:['Champions','Loyalists','At-Risk','Price-Sensitive','New Customers','Dormant'],
+    datasets:[{data:[48200,112400,76800,98600,91200,72800],backgroundColor:segColors,borderWidth:0}]
+  },
+  options:{responsive:true,maintainAspectRatio:true,cutout:'60%',plugins:{legend:{position:'bottom',labels:{font:{size:10},boxWidth:12}}}}
+});
+
+new Chart(document.getElementById('responseChart'),{
+  type:'bar',
+  data:{
+    labels:['Champions','Loyalists','At-Risk','Price-Sensitive','New Customers','Dormant'],
+    datasets:[{
+      label:'Response Rate %',
+      data:[64,51,38,22,29,8],
+      backgroundColor:segColors,borderRadius:6
+    }]
+  },
+  options:{responsive:true,maintainAspectRatio:true,plugins:{legend:{display:false}},
+    scales:{x:{grid:{display:false},ticks:{color:'#64748b',font:{size:9}}},y:{grid:{color:'#f0f4f8'},ticks:{color:'#64748b',font:{size:10},callback:v=>v+'%'}}}}
+});
+
+new Chart(document.getElementById('premiumChart'),{
+  type:'bar',
+  data:{
+    labels:['Champions','Loyalists','At-Risk','Price-Sensitive','New','Dormant'],
+    datasets:[{
+      label:'Avg Annual Premium ₹',
+      data:[42600,28200,24800,9400,15100,7200],
+      backgroundColor:blueLight,borderColor:blue,borderWidth:2,borderRadius:6
+    }]
+  },
+  options:{responsive:true,maintainAspectRatio:true,plugins:{legend:{display:false}},
+    scales:{x:{grid:{display:false},ticks:{color:'#64748b',font:{size:9}}},y:{grid:{color:'#f0f4f8'},ticks:{color:'#64748b',font:{size:10},callback:v=>'₹'+v.toLocaleString()}}}}
+});
+
+new Chart(document.getElementById('beforeAfterChart'),{
+  type:'line',
+  data:{
+    labels:['Q1 Pre','Q2 Pre','Q3 Pre','Q4 Pre','Q1 Post','Q2 Post','Q3 Post'],
+    datasets:[
+      {label:'Baseline (all-same)',data:[3.1,3.2,3.0,3.1,null,null,null],borderColor:'#94a3b8',borderWidth:2,borderDash:[5,5],pointRadius:4,backgroundColor:'transparent'},
+      {label:'Targeted (post-segment)',data:[null,null,null,3.1,3.6,3.9,4.1],borderColor:blue,borderWidth:2.5,fill:true,backgroundColor:blueLight,tension:0.35,pointRadius:4}
+    ]
+  },
+  options:{responsive:true,maintainAspectRatio:true,
+    plugins:{legend:{labels:{font:{size:10},boxWidth:14}}},
+    scales:{x:{grid:{display:false},ticks:{color:'#64748b',font:{size:10}}},y:{grid:{color:'#f0f4f8'},ticks:{color:'#64748b',font:{size:10},callback:v=>v+'%'},title:{display:true,text:'Response Rate %',font:{size:10},color:'#64748b'}}}}
+});
+
+function showTab(btn,id){
+  document.querySelectorAll('.code-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.code-block').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+</script>
+</body>
+</html>

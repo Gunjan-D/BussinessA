@@ -1,0 +1,435 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Fraud Detection Analytics | BI Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="project.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="topnav-inner">
+    <a href="index.html" class="back-btn"><span class="back-arrow">←</span> Back to Portfolio</a>
+    <span class="logo">Gunjan<span>.</span></span>
+    <div class="proj-nav-links">
+      <a href="project-4.html">← Prev</a>
+      <a href="project-6.html">Next →</a>
+    </div>
+  </div>
+</nav>
+
+<header class="proj-hero p5-hero">
+  <div class="proj-hero-inner">
+    <p class="proj-eyebrow">Project 05 · Base SAS + T-SQL + SSIS + Power BI</p>
+    <h1>Insurance Fraud Detection Analytics</h1>
+    <p>Designed and deployed a rule-based fraud scoring engine using SAS data steps and PROC SQL against 850+ claims per month. An SSIS batch pipeline automates nightly scoring; a Power BI operations dashboard gives investigators real-time fraud alerts preventing ₹2.4 Cr in fraudulent payouts in the first year.</p>
+    <div class="proj-tags">
+      <span class="ptag">Base SAS</span>
+      <span class="ptag">PROC SQL</span>
+      <span class="ptag">T-SQL</span>
+      <span class="ptag">SSIS</span>
+      <span class="ptag">Power BI</span>
+      <span class="ptag">Fraud Analytics</span>
+      <span class="ptag">Rule Engine</span>
+    </div>
+  </div>
+</header>
+
+<div class="metrics-strip">
+  <div class="metrics-strip-inner">
+    <div class="metric-item"><div class="metric-num">₹2.4 Cr</div><div class="metric-lbl">Fraud Prevented (Yr 1)</div></div>
+    <div class="metric-item"><div class="metric-num">↓ 41%</div><div class="metric-lbl">False Positive Rate</div></div>
+    <div class="metric-item"><div class="metric-num">18</div><div class="metric-lbl">Detection Rules</div></div>
+    <div class="metric-item"><div class="metric-num">850+</div><div class="metric-lbl">Claims Scored / Month</div></div>
+  </div>
+</div>
+
+<div class="proj-body">
+  <div class="content-grid">
+    <div class="content-left">
+      <div class="section-block">
+        <h2>Business Problem</h2>
+        <p>The Special Investigations Unit (SIU) relied entirely on manual claim review and escalation by adjusters to flag suspicious claims. With 850+ claim submissions per month, only &lt;5% received in-depth investigation and confirmed fraud accounted for an estimated 3.8% of total payouts.</p>
+        <p>The objective was to build an automated, data-driven fraud scoring system that flagged high-risk claims for investigator review before payment was released, and to reduce both fraud losses and false positive investigations.</p>
+      </div>
+
+      <div class="section-block">
+        <h2>Solution Overview</h2>
+        <ul>
+          <li>Designed 18 rule-based fraud indicators across four categories: claimant behaviour, provider patterns, claim characteristic anomalies, and network linkage signals</li>
+          <li>Implemented the rule engine in Base SAS (data step + PROC SQL) each rule adds a weighted score; total fraud probability score 0–100 triggers three tiers: Low / Medium / High</li>
+          <li>SSIS package runs nightly at 02:00, extracts new claims from the DW, executes the SAS scoring batch job, and writes scores to the SQL staging table for Power BI refresh</li>
+          <li>Power BI SIU dashboard shows: fraud score distribution, alert queue by tier, rule hit frequency, adjuster performance, and monthly trend</li>
+          <li>Every flagged claim includes a "fraud rationale card" readable by investigators without data expertise</li>
+          <li>After 12 months, confirmed fraud prevention tracked at ₹2.4 Cr; false-positive rate fell from 28% to 16.5% after rule tuning iterations</li>
+        </ul>
+      </div>
+
+      <div class="section-block">
+        <h2>Process Walkthrough</h2>
+        <div class="process-steps">
+          <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <h4>Rule Design Workshop</h4>
+              <p>Held workshops with SIU investigators to codify their tacit fraud knowledge into 18 explicit, testable rules. Each rule was assigned a weight (1–5) reflecting historical fraud-confirmation rates from the prior 3-year claims dataset.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <h4>SAS Rule Engine</h4>
+              <p>Coded each rule in Base SAS data steps with indicator flags (0/1). PROC SQL aggregates rule weights into a total score and assigns tier labels. Parameterised thresholds so SIU can adjust cut-offs without code changes.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <h4>SSIS Automation</h4>
+              <p>SSIS package: Extract new claims from SQL DW → Export to SAS-readable flat file → Execute Base SAS scoring job → Import scored output back to SQL Server staging → Trigger Power BI dataset refresh via REST API.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">4</div>
+            <div class="step-content">
+              <h4>Power BI SIU Dashboard</h4>
+              <p>Five report pages: Alert Queue (priority list for today), Score Distribution, Rule Hit Analysis, Investigator Workload, Trend Analysis. RLS restricts each investigator to their assigned region's claims.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">5</div>
+            <div class="step-content">
+              <h4>Monitoring &amp; Rule Tuning</h4>
+              <p>Monthly review of rule performance precision, recall, confirmed fraud rate per rule. Removed 2 low-precision rules, added 3 new network-linkage rules. False positive rate dropped from 28% → 16.5% post-tuning.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-right">
+      <div class="sidebar-card">
+        <h3>Tech Stack</h3>
+        <div class="tech-badges">
+          <span class="tbadge primary">Base SAS</span>
+          <span class="tbadge primary">T-SQL</span>
+          <span class="tbadge primary">SSIS</span>
+          <span class="tbadge">Power BI</span>
+          <span class="tbadge">PROC SQL</span>
+          <span class="tbadge">SAS Macro</span>
+          <span class="tbadge">SQL Server DW</span>
+          <span class="tbadge">DAX (RLS)</span>
+          <span class="tbadge">SSIS Script Task</span>
+          <span class="tbadge">SIU Alert Workflow</span>
+        </div>
+      </div>
+
+      <div class="sidebar-card">
+        <h3>Rule Categories</h3>
+        <div class="result-items">
+          <div class="result-item"><span class="result-icon">👤</span><div class="result-text"><strong>Claimant Behaviour</strong> 5 rules (filing velocity, address changes)</div></div>
+          <div class="result-item"><span class="result-icon">🏥</span><div class="result-text"><strong>Provider Patterns</strong> 4 rules (fee outliers, referral loops)</div></div>
+          <div class="result-item"><span class="result-icon">📋</span><div class="result-text"><strong>Claim Characteristics</strong> 5 rules (repair inflation, timing anomalies)</div></div>
+          <div class="result-item"><span class="result-icon">🔗</span><div class="result-text"><strong>Network Linkage</strong> 4 rules (shared addresses, phones)</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHARTS -->
+  <div class="chart-section">
+    <h2>Fraud Analytics Dashboard Insights</h2>
+    <div class="charts-grid">
+      <div class="chart-card">
+        <h4>Fraud Score Distribution (%)</h4>
+        <canvas id="scoreDistChart"></canvas>
+      </div>
+      <div class="chart-card">
+        <h4>Monthly Flagged vs Confirmed Fraud Claims</h4>
+        <canvas id="monthlyTrendChart"></canvas>
+      </div>
+      <div class="chart-card">
+        <h4>Top 8 Rule Hit Frequency (Monthly Avg)</h4>
+        <canvas id="ruleHitChart"></canvas>
+      </div>
+      <div class="chart-card">
+        <h4>False Positive Rate Before vs After Rule Tuning</h4>
+        <canvas id="fpTrendChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- CODE -->
+  <div class="code-section">
+    <h2>Code Samples</h2>
+    <div class="code-tabs">
+      <button class="code-tab active" onclick="showTab(this,'sas5')">Base SAS – Rule Engine</button>
+      <button class="code-tab" onclick="showTab(this,'sql5')">T-SQL – Feature Extraction</button>
+      <button class="code-tab" onclick="showTab(this,'dax5')">Power BI DAX – RLS + Score</button>
+    </div>
+    <div class="code-block-wrap">
+      <div class="code-block active" id="sas5">
+        <pre><code><span class="cm">/* ─── Fraud Scoring Rule Engine ─── */</span>
+
+<span class="kw">%LET</span> high_threshold = <span class="num">65</span>;
+<span class="kw">%LET</span> mid_threshold  = <span class="num">35</span>;
+
+<span class="kw">DATA</span> work.scored_claims;
+    <span class="kw">SET</span>  work.claims_features;
+    
+    <span class="cm">/* Initialise score */</span>
+    fraud_score = <span class="num">0</span>;
+    
+    <span class="cm">/* ── Category 1: Claimant Behaviour ── */</span>
+    <span class="cm">/* Rule 1: Multiple claims within 90 days */</span>
+    <span class="kw">IF</span> claims_last_90d >= <span class="num">2</span>                <span class="kw">THEN</span> fraud_score + <span class="num">15</span>;
+    
+    <span class="cm">/* Rule 2: Address change within 30 days of claim */</span>
+    <span class="kw">IF</span> addr_change_before_claim_days &lt;= <span class="num">30</span>  <span class="kw">THEN</span> fraud_score + <span class="num">10</span>;
+    
+    <span class="cm">/* Rule 3: Claim filed same day as policy inception */</span>
+    <span class="kw">IF</span> inception_to_claim_days &lt;= <span class="num">1</span>        <span class="kw">THEN</span> fraud_score + <span class="num">20</span>;
+    
+    <span class="cm">/* ── Category 2: Provider Patterns ── */</span>
+    <span class="cm">/* Rule 4: Provider billed amount > 2x market benchmark */</span>
+    <span class="kw">IF</span> provider_rate_ratio >= <span class="num">2.0</span>           <span class="kw">THEN</span> fraud_score + <span class="num">18</span>;
+    
+    <span class="cm">/* Rule 5: Provider involved in prior confirmed fraud */</span>
+    <span class="kw">IF</span> provider_prior_fraud_flag = <span class="num">1</span>        <span class="kw">THEN</span> fraud_score + <span class="num">25</span>;
+    
+    <span class="cm">/* ── Category 3: Claim Characteristics ── */</span>
+    <span class="cm">/* Rule 6: Claimed amount exceeds policy sub-limit */</span>
+    <span class="kw">IF</span> claim_to_sublimit_ratio >= <span class="num">1.5</span>       <span class="kw">THEN</span> fraud_score + <span class="num">12</span>;
+    
+    <span class="cm">/* Rule 7: Accident occurred on a Monday (high indicator) */</span>
+    <span class="kw">IF</span> accident_weekday = <span class="str">'MON'</span>             <span class="kw">THEN</span> fraud_score + <span class="num">5</span>;
+    
+    <span class="cm">/* ── Category 4: Network Linkage ── */</span>
+    <span class="cm">/* Rule 8: Shared phone with another active claim */</span>
+    <span class="kw">IF</span> shared_phone_active_claim = <span class="num">1</span>        <span class="kw">THEN</span> fraud_score + <span class="num">22</span>;
+    
+    <span class="cm">/* Normalise to 0-100 */</span>
+    fraud_score = <span class="fn">MIN</span>(fraud_score, <span class="num">100</span>);
+    
+    <span class="cm">/* Assign tier */</span>
+    <span class="kw">IF</span>      fraud_score >= &amp;high_threshold  <span class="kw">THEN</span> fraud_tier = <span class="str">'HIGH'</span>;
+    <span class="kw">ELSE IF</span> fraud_score >= &amp;mid_threshold   <span class="kw">THEN</span> fraud_tier = <span class="str">'MEDIUM'</span>;
+    <span class="kw">ELSE</span>                                        fraud_tier = <span class="str">'LOW'</span>;
+    
+    <span class="cm">/* Readable rationale string */</span>
+    fraud_rationale = <span class="fn">CATX</span>(<span class="str">'; '</span>,
+        <span class="kw">IFC</span>(claims_last_90d >= <span class="num">2</span>,        <span class="str">'Multiple claims in 90d'</span>,   <span class="str">''</span>),
+        <span class="kw">IFC</span>(provider_prior_fraud_flag=<span class="num">1</span>, <span class="str">'Provider fraud history'</span>,   <span class="str">''</span>),
+        <span class="kw">IFC</span>(shared_phone_active_claim=<span class="num">1</span>, <span class="str">'Shared phone linkage'</span>,     <span class="str">''</span>)
+    );
+<span class="kw">RUN</span>;</code></pre>
+      </div>
+      <div class="code-block" id="sql5">
+        <pre><code><span class="cm">-- Build feature view for SAS scoring engine</span>
+<span class="kw">CREATE OR ALTER VIEW</span> dbo.vw_ClaimFraudFeatures
+<span class="kw">AS</span>
+<span class="kw">WITH</span> claim_history <span class="kw">AS</span> (
+    <span class="kw">SELECT</span>
+        c.ClaimantID,
+        <span class="fn">COUNT</span>(*) <span class="kw">OVER</span> (
+            <span class="kw">PARTITION BY</span> c.ClaimantID
+            <span class="kw">ORDER BY</span> c.ClaimDate
+            <span class="kw">ROWS BETWEEN</span> <span class="kw">UNBOUNDED PRECEDING AND</span> <span class="kw">CURRENT ROW</span>
+        )                                             <span class="kw">AS</span> cumulative_claims,
+        <span class="fn">COUNT</span>(*) <span class="kw">FILTER</span> (<span class="kw">WHERE</span>
+            c2.ClaimDate >= <span class="fn">DATEADD</span>(day, -<span class="num">90</span>, c.ClaimDate)
+        ) <span class="kw">OVER</span> (<span class="kw">PARTITION BY</span> c.ClaimantID)           <span class="kw">AS</span> claims_last_90d
+    <span class="kw">FROM</span> dbo.Claims c
+    <span class="kw">LEFT JOIN</span> dbo.Claims c2
+        <span class="kw">ON</span> c.ClaimantID = c2.ClaimantID
+),
+provider_benchmark <span class="kw">AS</span> (
+    <span class="kw">SELECT</span>
+        ProviderID,
+        <span class="fn">AVG</span>(BilledAmount)    <span class="kw">AS</span> avg_provider_bill,
+        pb.benchmark_amount,
+        <span class="fn">AVG</span>(BilledAmount) /
+            <span class="fn">NULLIF</span>(pb.benchmark_amount, <span class="num">0</span>) <span class="kw">AS</span> provider_rate_ratio
+    <span class="kw">FROM</span> dbo.Claims clm
+    <span class="kw">INNER JOIN</span> dbo.ProviderBenchmarks pb <span class="kw">USING</span> (ProviderID, ClaimType)
+    <span class="kw">GROUP BY</span> ProviderID, pb.benchmark_amount
+),
+network <span class="kw">AS</span> (
+    <span class="kw">SELECT</span>
+        c1.ClaimID,
+        <span class="kw">CASE WHEN</span>
+            <span class="fn">EXISTS</span> (
+                <span class="kw">SELECT</span> <span class="num">1</span> <span class="kw">FROM</span> dbo.Claims c2
+                <span class="kw">WHERE</span>  c2.ClaimantPhone = c1.ClaimantPhone
+                  <span class="kw">AND</span>  c2.ClaimID &lt;&gt; c1.ClaimID
+                  <span class="kw">AND</span>  c2.ClaimStatus = <span class="str">'ACTIVE'</span>
+            ) <span class="kw">THEN</span> <span class="num">1</span> <span class="kw">ELSE</span> <span class="num">0</span> <span class="kw">END</span>       <span class="kw">AS</span> shared_phone_active_claim
+    <span class="kw">FROM</span> dbo.Claims c1
+)
+<span class="kw">SELECT</span>
+    c.ClaimID, c.PolicyID, c.ClaimantID, c.ClaimDate,
+    ch.claims_last_90d,
+    pb.provider_rate_ratio,
+    pf.prior_fraud_confirmed                      <span class="kw">AS</span> provider_prior_fraud_flag,
+    <span class="fn">DATEDIFF</span>(day, pol.InceptionDate, c.ClaimDate) <span class="kw">AS</span> inception_to_claim_days,
+    n.shared_phone_active_claim,
+    <span class="fn">DATENAME</span>(dw, c.AccidentDate)                 <span class="kw">AS</span> accident_weekday,
+    c.ClaimAmount / <span class="fn">NULLIF</span>(pol.SubLimit, <span class="num">0</span>)      <span class="kw">AS</span> claim_to_sublimit_ratio
+<span class="kw">FROM</span>            dbo.Claims              c
+<span class="kw">INNER JOIN</span>      dbo.Policies           pol <span class="kw">ON</span> c.PolicyID = pol.PolicyID
+<span class="kw">INNER JOIN</span>      claim_history          ch  <span class="kw">ON</span> c.ClaimantID = ch.ClaimantID
+<span class="kw">LEFT  JOIN</span>      provider_benchmark     pb  <span class="kw">ON</span> c.ProviderID = pb.ProviderID
+<span class="kw">LEFT  JOIN</span>      dbo.ProviderFraudList  pf  <span class="kw">ON</span> c.ProviderID = pf.ProviderID
+<span class="kw">INNER JOIN</span>      network                n   <span class="kw">ON</span> c.ClaimID   = n.ClaimID
+<span class="kw">WHERE</span> c.ClaimStatus <span class="kw">IN</span> (<span class="str">'PENDING'</span>, <span class="str">'UNDER_REVIEW'</span>);</code></pre>
+      </div>
+      <div class="code-block" id="dax5">
+        <pre><code><span class="cm">-- Row-Level Security: restrict to investigator's region</span>
+<span class="fn">Investigator Security Filter</span> =
+<span class="kw">USERPRINCIPALNAME</span>() = <span class="fn">RELATED</span>( Investigators[Email] )
+  || <span class="fn">ISEMPTY</span>(
+       <span class="fn">FILTER</span>( Investigators, Investigators[Role] = <span class="str">"SIU_MANAGER"</span>
+               && Investigators[Email] = <span class="kw">USERPRINCIPALNAME</span>() )
+     ) = <span class="kw">FALSE</span>
+
+<span class="cm">-- High-risk claim count in current period</span>
+<span class="fn">High Risk Claims</span> =
+<span class="fn">CALCULATE</span>(
+    <span class="fn">COUNTROWS</span>( FraudScores ),
+    FraudScores[FraudTier] = <span class="str">"HIGH"</span>
+)
+
+<span class="cm">-- Confirmed fraud rate %</span>
+<span class="fn">Confirmed Fraud Rate</span> =
+<span class="kw">DIVIDE</span>(
+    <span class="fn">CALCULATE</span>( <span class="fn">COUNTROWS</span>( FraudScores ),
+                FraudScores[Outcome] = <span class="str">"CONFIRMED_FRAUD"</span> ),
+    <span class="fn">CALCULATE</span>( <span class="fn">COUNTROWS</span>( FraudScores ),
+                FraudScores[FraudTier] <span class="kw">IN</span> { <span class="str">"HIGH"</span>, <span class="str">"MEDIUM"</span> } ),
+    <span class="num">0</span>
+) * <span class="num">100</span>
+
+<span class="cm">-- Rolling False Positive Rate (3-month)</span>
+<span class="fn">FP Rate (3M Rolling)</span> =
+<span class="kw">VAR</span> flaggedWindow =
+    <span class="fn">CALCULATE</span>( <span class="fn">COUNTROWS</span>(FraudScores),
+                FraudScores[FraudTier] &lt;&gt; <span class="str">"LOW"</span>,
+                <span class="fn">DATESINPERIOD</span>( DateTable[Date], <span class="fn">LASTDATE</span>(DateTable[Date]), -<span class="num">3</span>, <span class="kw">MONTH</span>) )
+<span class="kw">VAR</span> fpWindow =
+    <span class="fn">CALCULATE</span>( <span class="fn">COUNTROWS</span>(FraudScores),
+                FraudScores[Outcome] = <span class="str">"CLEARED"</span>,
+                <span class="fn">DATESINPERIOD</span>( DateTable[Date], <span class="fn">LASTDATE</span>(DateTable[Date]), -<span class="num">3</span>, <span class="kw">MONTH</span>) )
+<span class="kw">RETURN</span> <span class="kw">DIVIDE</span>( fpWindow, flaggedWindow, <span class="num">0</span> ) * <span class="num">100</span></code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- TABLE -->
+  <div class="table-section">
+    <h2>Top Fraud Detection Rules Performance Summary</h2>
+    <table class="data-table">
+      <thead>
+        <tr><th>Rule</th><th>Category</th><th>Monthly Hits</th><th>Precision %</th><th>Confirmed Fraud %</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Provider prior fraud flag</td><td>Provider</td><td>38</td><td>82%</td><td><span class="badge-green">74%</span></td><td><span class="badge-green">Active</span></td></tr>
+        <tr><td>Shared phone linkage</td><td>Network</td><td>55</td><td>71%</td><td><span class="badge-green">63%</span></td><td><span class="badge-green">Active</span></td></tr>
+        <tr><td>Claim on inception day</td><td>Claimant</td><td>12</td><td>78%</td><td><span class="badge-green">71%</span></td><td><span class="badge-green">Active</span></td></tr>
+        <tr><td>Multiple claims in 90 days</td><td>Claimant</td><td>74</td><td>54%</td><td><span class="badge-blue">46%</span></td><td><span class="badge-green">Active</span></td></tr>
+        <tr><td>Provider billing > 2x benchmark</td><td>Provider</td><td>49</td><td>61%</td><td><span class="badge-blue">52%</span></td><td><span class="badge-green">Active</span></td></tr>
+        <tr><td>Claim amount > 1.5x sub-limit</td><td>Characteristic</td><td>31</td><td>48%</td><td><span class="badge-blue">38%</span></td><td><span class="badge-green">Active</span></td></tr>
+        <tr><td>Address change 30d before claim</td><td>Claimant</td><td>22</td><td>44%</td><td><span class="badge-blue">35%</span></td><td><span class="badge-green">Active</span></td></tr>
+        <tr><td>Weekend accident spike rule</td><td>Characteristic</td><td>110</td><td>19%</td><td><span class="badge-red">14%</span></td><td><span class="badge-red">Tuned ↓</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="proj-footer-nav">
+  <div class="proj-footer-inner">
+    <a href="project-4.html" class="pnav-card">
+      <span class="pnav-arrow">←</span>
+      <div><div class="pnav-label">Previous Project</div><div class="pnav-title">Customer Segmentation</div></div>
+    </a>
+    <a href="project-6.html" class="pnav-card next">
+      <div><div class="pnav-label">Next Project</div><div class="pnav-title">Premium Pricing Dashboard</div></div>
+      <span class="pnav-arrow">→</span>
+    </a>
+  </div>
+</div>
+
+<script>
+const blue='#0068b5',accent='#f04e23';
+
+new Chart(document.getElementById('scoreDistChart'),{
+  type:'bar',
+  data:{
+    labels:['0–10','11–20','21–30','31–40','41–50','51–60','61–70','71–80','81–90','91–100'],
+    datasets:[{
+      label:'Claims Count',
+      data:[210,195,138,92,76,58,44,28,18,7],
+      backgroundColor:[
+        '#94a3b8','#94a3b8','#94a3b8','#60a5fa','#60a5fa',
+        '#f97316','#f97316','#ef4444','#ef4444','#dc2626'
+      ],
+      borderRadius:5
+    }]
+  },
+  options:{responsive:true,maintainAspectRatio:true,plugins:{legend:{display:false}},
+    scales:{x:{grid:{display:false},ticks:{color:'#64748b',font:{size:10}}},y:{grid:{color:'#f0f4f8'},ticks:{color:'#64748b',font:{size:10}},title:{display:true,text:'# Claims',font:{size:10},color:'#64748b'}}}}
+});
+
+new Chart(document.getElementById('monthlyTrendChart'),{
+  type:'line',
+  data:{
+    labels:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+    datasets:[
+      {label:'Claims Flagged',data:[92,87,105,98,112,108,119,115,124,118,131,128],borderColor:'#f97316',backgroundColor:'rgba(249,115,22,0.10)',fill:true,tension:0.35,borderWidth:2,pointRadius:4},
+      {label:'Confirmed Fraud',data:[38,42,51,49,56,61,68,65,72,70,79,82],borderColor:accent,backgroundColor:'rgba(240,78,35,0.10)',fill:true,tension:0.35,borderWidth:2,pointRadius:4}
+    ]
+  },
+  options:{responsive:true,maintainAspectRatio:true,plugins:{legend:{labels:{font:{size:10},boxWidth:14}}},
+    scales:{x:{grid:{display:false},ticks:{color:'#64748b',font:{size:10}}},y:{grid:{color:'#f0f4f8'},ticks:{color:'#64748b',font:{size:10}}}}}
+});
+
+new Chart(document.getElementById('ruleHitChart'),{
+  type:'bar',
+  data:{
+    labels:['Wknd Accident','Multi Claims 90d','Shared Phone','Billing>2x','Multi Claims 90d†','Addr Change','Sub-limit Overage','Provider History'],
+    datasets:[{
+      label:'Avg Monthly Hits',
+      data:[110,74,55,49,38,22,31,38],
+      backgroundColor:'rgba(0,104,181,0.20)',borderColor:blue,borderWidth:1.5,borderRadius:6
+    }]
+  },
+  options:{responsive:true,maintainAspectRatio:true,indexAxis:'y',plugins:{legend:{display:false}},
+    scales:{x:{grid:{color:'#f0f4f8'},ticks:{color:'#64748b',font:{size:10}}},y:{grid:{display:false},ticks:{color:'#64748b',font:{size:9}}}}}
+});
+
+new Chart(document.getElementById('fpTrendChart'),{
+  type:'line',
+  data:{
+    labels:['Month 1','Month 2','Month 3','Month 4','Month 5','Month 6','Month 7','Month 8','Month 9','Month 10','Month 11','Month 12'],
+    datasets:[{
+      label:'False Positive Rate %',
+      data:[28.1,27.4,26.8,25.5,25.0,23.8,22.4,21.1,19.5,18.2,17.1,16.5],
+      borderColor:blue,backgroundColor:'rgba(0,104,181,0.12)',fill:true,tension:0.4,borderWidth:2.5,pointRadius:3
+    }]
+  },
+  options:{responsive:true,maintainAspectRatio:true,plugins:{legend:{labels:{font:{size:10},boxWidth:14}}},
+    scales:{x:{grid:{display:false},ticks:{color:'#64748b',font:{size:9}}},y:{grid:{color:'#f0f4f8'},ticks:{color:'#64748b',font:{size:10},callback:v=>v+'%'},title:{display:true,text:'FP Rate %',font:{size:10},color:'#64748b'}}}}
+});
+
+function showTab(btn,id){
+  document.querySelectorAll('.code-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.code-block').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+</script>
+</body>
+</html>

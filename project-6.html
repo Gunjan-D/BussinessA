@@ -1,0 +1,443 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Premium Pricing Dashboard | BI Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="project.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="topnav-inner">
+    <a href="index.html" class="back-btn"><span class="back-arrow">←</span> Back to Portfolio</a>
+    <span class="logo">Gunjan<span>.</span></span>
+    <div class="proj-nav-links">
+      <a href="project-5.html">← Prev</a>
+      <a href="index.html">Portfolio →</a>
+    </div>
+  </div>
+</nav>
+
+<header class="proj-hero p6-hero">
+  <div class="proj-hero-inner">
+    <p class="proj-eyebrow">Project 06 · SAS EG + PROC GENMOD + Power BI + RLS</p>
+    <h1>Premium Pricing Sophistication Dashboard</h1>
+    <p>Built a Generalised Linear Model (GLM) in SAS Enterprise Guide using PROC GENMOD to address inadequate premium pricing across 12 rating variables. The model quantified individually-rated relativity for each factor; a Power BI executive dashboard with row-level security enabled actuaries and product managers to monitor loss ratios against predicted values and identify repricing opportunities.</p>
+    <div class="proj-tags">
+      <span class="ptag">SAS EG</span>
+      <span class="ptag">PROC GENMOD</span>
+      <span class="ptag">GLM Modelling</span>
+      <span class="ptag">Power BI</span>
+      <span class="ptag">DAX</span>
+      <span class="ptag">RLS</span>
+      <span class="ptag">Actuarial Analytics</span>
+      <span class="ptag">T-SQL</span>
+    </div>
+  </div>
+</header>
+
+<div class="metrics-strip">
+  <div class="metrics-strip-inner">
+    <div class="metric-item"><div class="metric-num">↑ 6.2%</div><div class="metric-lbl">Loss Ratio Improvement</div></div>
+    <div class="metric-item"><div class="metric-num">12</div><div class="metric-lbl">Rating Variables Modelled</div></div>
+    <div class="metric-item"><div class="metric-num">5 Years</div><div class="metric-lbl">Historical Training Data</div></div>
+    <div class="metric-item"><div class="metric-num">RLS</div><div class="metric-lbl">Row-Level Security Applied</div></div>
+  </div>
+</div>
+
+<div class="proj-body">
+  <div class="content-grid">
+    <div class="content-left">
+      <div class="section-block">
+        <h2>Business Problem</h2>
+        <p>The pricing team used simple univariate relativities each rating variable set independently using historical averages leading to cross-subsidisation between risk cohorts. High-risk segments were under-priced, contributing to a 98.4% loss ratio in two motor sub-segments, while low-risk segments were over-priced and losing to competitors.</p>
+        <p>The actuarial team required a multivariate GLM to quantify correlations between rating factors, remove distortions, and produce stable, credible relativities for each of the 12 rating variables simultaneously.</p>
+      </div>
+
+      <div class="section-block">
+        <h2>Solution Overview</h2>
+        <ul>
+          <li>Extracted 5 years of policy and claims data from SQL Server warehouse using a staging view (T-SQL) 1.2M policy-year exposure records</li>
+          <li>Built a Tweedie GLM in SAS EG using PROC GENMOD with log link, offset for exposure, and systematic variable selection (stepwise AIC)</li>
+          <li>Modelled 12 rating variables: age band, vehicle age, cubic capacity, geographic zone, NCB class, sum insured band, occupation, policy tenure, usage type, annual mileage band, add-on cover flag, renewal channel</li>
+          <li>Output: parameter estimates (relativities) exported to SQL Server via SAS/ACCESS; used as reference rates in the pricing engine</li>
+          <li>Built a Power BI dashboard with 4 pages Actual vs Expected loss ratio, Rating factor relativities, Territory heat-map (custom visual), and Repricing opportunity tracker</li>
+          <li>Applied Role-Level Security (RLS): actuaries see all segments; product managers see only their lines of business</li>
+          <li>Post-implementation, the updated rate schedule improved blended loss ratio from 96.4% → 90.2% (6.2 pp improvement) over the subsequent 18-month review period</li>
+        </ul>
+      </div>
+
+      <div class="section-block">
+        <h2>Process Walkthrough</h2>
+        <div class="process-steps">
+          <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <h4>Data Extraction &amp; Preparation (T-SQL)</h4>
+              <p>Built a T-SQL staging view joining policies, claims, and exposure data. Derived variables: earned premium, pure loss cost, earned exposure in policy-years, banded variables, and NCB class. Data quality checks: outlier flagging, missing value imputation rules.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <h4>Exploratory Data Analysis (SAS EG)</h4>
+              <p>PROC FREQ and PROC MEANS for categorical and continuous variable distributions. Plotted observed loss frequency and severity by each rating factor level to confirm monotonic relationships before modelling.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <h4>GLM Development (PROC GENMOD)</h4>
+              <p>Frequency model: Poisson with log link, offset=log(exposure). Severity model: Gamma with log link. Pure premium (Tweedie) model as primary pricing output. Variable selection by backward elimination using AIC. Aliased levels set as base reference class (relativity=1.0).</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">4</div>
+            <div class="step-content">
+              <h4>Relativity Extraction &amp; Rate Filing</h4>
+              <p>Exponentiated GENMOD parameter estimates to derive multiplicative relativities. Output written to SQL rating table. Cross-validated against lifted Gini plots and actual-to-expected charts. Submitted rate schedule to the actuarial review committee.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">5</div>
+            <div class="step-content">
+              <h4>Power BI Dashboard &amp; RLS</h4>
+              <p>4-page Power BI report built on the SQL rating and experience tables. RLS roles: Actuary (full access), Product Mgr (line of business filter), Regional Head (territory filter). Dashboard published to Power BI Service with scheduled refresh.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-right">
+      <div class="sidebar-card">
+        <h3>Tech Stack</h3>
+        <div class="tech-badges">
+          <span class="tbadge primary">SAS EG</span>
+          <span class="tbadge primary">PROC GENMOD</span>
+          <span class="tbadge primary">Power BI</span>
+          <span class="tbadge">T-SQL</span>
+          <span class="tbadge">PROC FREQ / MEANS</span>
+          <span class="tbadge">Tweedie GLM</span>
+          <span class="tbadge">Poisson / Gamma</span>
+          <span class="tbadge">DAX</span>
+          <span class="tbadge">RLS (Row-Level Security)</span>
+          <span class="tbadge">Power BI Service</span>
+          <span class="tbadge">SAS/ACCESS</span>
+        </div>
+      </div>
+
+      <div class="sidebar-card">
+        <h3>Dashboard Pages</h3>
+        <div class="result-items">
+          <div class="result-item"><span class="result-icon">📊</span><div class="result-text"><strong>A/E Tracker</strong> Actual vs Expected loss ratio by segment &amp; month</div></div>
+          <div class="result-item"><span class="result-icon">🎚️</span><div class="result-text"><strong>Rating Factors</strong> Relativity sliders per variable, base premium impact</div></div>
+          <div class="result-item"><span class="result-icon">🗺️</span><div class="result-text"><strong>Territory Heat-Map</strong> Geographic loss ratio by PIN zone</div></div>
+          <div class="result-item"><span class="result-icon">🎯</span><div class="result-text"><strong>Repricing Tracker</strong> Segments requiring rate action, priority ranking</div></div>
+        </div>
+      </div>
+
+      <div class="sidebar-card">
+        <h3>Model Performance</h3>
+        <div class="result-items">
+          <div class="result-item"><span class="result-icon">📈</span><div class="result-text"><strong>Gini Coefficient</strong>: 0.34 (frequency), 0.27 (severity)</div></div>
+          <div class="result-item"><span class="result-icon">📉</span><div class="result-text"><strong>AIC Improvement</strong>: 12.4% over univariate baseline</div></div>
+          <div class="result-item"><span class="result-icon">✅</span><div class="result-text"><strong>A/E Ratio</strong>: 0.98–1.02 across all major segments post-implementation</div></div>
+          <div class="result-item"><span class="result-icon">🔐</span><div class="result-text"><strong>RLS Roles</strong>: Actuary, Product Mgr, Regional Head</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHARTS -->
+  <div class="chart-section">
+    <h2>Pricing Analytics Dashboard Insights</h2>
+    <div class="charts-grid">
+      <div class="chart-card">
+        <h4>Actual vs Expected Loss Ratio Pre &amp; Post Repricing</h4>
+        <canvas id="aeChart"></canvas>
+      </div>
+      <div class="chart-card">
+        <h4>Rating Factor Relativities (GLM Output)</h4>
+        <canvas id="relativChart"></canvas>
+      </div>
+      <div class="chart-card">
+        <h4>Loss Ratio by Vehicle Age Band Before &amp; After</h4>
+        <canvas id="vehicleChart"></canvas>
+      </div>
+      <div class="chart-card">
+        <h4>Premium Adequacy Index by Territory (Post-GLM)</h4>
+        <canvas id="territoryChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- CODE -->
+  <div class="code-section">
+    <h2>Code Samples</h2>
+    <div class="code-tabs">
+      <button class="code-tab active" onclick="showTab(this,'sas6')">SAS EG – PROC GENMOD (GLM)</button>
+      <button class="code-tab" onclick="showTab(this,'sql6')">T-SQL – Staging View</button>
+      <button class="code-tab" onclick="showTab(this,'dax6')">Power BI DAX – A/E + RLS</button>
+    </div>
+    <div class="code-block-wrap">
+      <div class="code-block active" id="sas6">
+        <pre><code><span class="cm">/* ─── GLM Frequency Model PROC GENMOD ─── */</span>
+<span class="cm">/* Pure Premium: Tweedie family, log link */</span>
+
+<span class="kw">PROC GENMOD</span> data=work.pricing_data;
+    <span class="cm">/* Exposure offset */</span>
+    <span class="kw">OFFSET</span> log_exposure;
+    
+    <span class="cm">/* Rating variables all treated as CLASS */</span>
+    <span class="kw">CLASS</span>
+        age_band         (<span class="kw">REF</span>=<span class="str">'30-40'</span>)
+        vehicle_age_band (<span class="kw">REF</span>=<span class="str">'0-3yrs'</span>)
+        cc_band          (<span class="kw">REF</span>=<span class="str">'1000-1499cc'</span>)
+        geo_zone         (<span class="kw">REF</span>=<span class="str">'Zone_C'</span>)
+        ncb_class        (<span class="kw">REF</span>=<span class="str">'NCB00'</span>)
+        usage_type       (<span class="kw">REF</span>=<span class="str">'SDL'</span>)
+        si_band          (<span class="kw">REF</span>=<span class="str">'Band_3'</span>);
+    
+    <span class="cm">/* Model statement: Tweedie with log link */</span>
+    <span class="kw">MODEL</span> pure_premium =
+        age_band
+        vehicle_age_band
+        cc_band
+        geo_zone
+        ncb_class
+        usage_type
+        si_band
+        / <span class="kw">DIST</span>=tweedie <span class="kw">LINK</span>=log
+          <span class="kw">DSCALE</span>
+          <span class="kw">TYPE3</span>;
+    
+    <span class="cm">/* Export parameter estimates to SAS dataset */</span>
+    <span class="kw">OUTPUT OUT</span>=work.glm_params
+        <span class="kw">PREDICTED</span>=fitted_pure_premium
+        <span class="kw">STDRESCHI</span>=pearson_resid;
+<span class="kw">RUN</span>;
+
+<span class="cm">/* Convert log-scale parameters to multiplicative relativities */</span>
+<span class="kw">DATA</span> work.relativities;
+    <span class="kw">SET</span> work.glm_params (keep=Parameter Level1 Estimate StdErr);
+    relativity       = <span class="fn">EXP</span>(Estimate);
+    lower_95ci       = <span class="fn">EXP</span>(Estimate - <span class="num">1.96</span> * StdErr);
+    upper_95ci       = <span class="fn">EXP</span>(Estimate + <span class="num">1.96</span> * StdErr);
+    pct_from_base    = (relativity - <span class="num">1</span>) * <span class="num">100</span>;
+<span class="kw">RUN</span>;
+
+<span class="cm">/* Write relativities back to SQL for pricing engine */</span>
+<span class="kw">PROC SQL</span>;
+    <span class="kw">CONNECT TO</span> odbc (datasrc=<span class="str">"PricingDW"</span>);
+    <span class="kw">EXECUTE</span> (
+        <span class="kw">TRUNCATE TABLE</span> dbo.GLM_Relativities
+    ) <span class="kw">BY</span> odbc;
+    <span class="kw">INSERT INTO</span> odbc.dbo.GLM_Relativities
+        <span class="kw">SELECT</span> * <span class="kw">FROM</span> work.relativities;
+    <span class="kw">DISCONNECT FROM</span> odbc;
+<span class="kw">QUIT</span>;</code></pre>
+      </div>
+      <div class="code-block" id="sql6">
+        <pre><code><span class="cm">-- Pricing experience staging view</span>
+<span class="kw">CREATE OR ALTER VIEW</span> dbo.vw_PricingExperience
+<span class="kw">AS</span>
+<span class="kw">SELECT</span>
+    p.PolicyID,
+    p.PolicyYear,
+    p.ProductCode,
+    p.Territory,
+    <span class="cm">-- Rating variables</span>
+    t.AgeBand          <span class="kw">AS</span> age_band,
+    t.VehicleAgeBand   <span class="kw">AS</span> vehicle_age_band,
+    t.CCBand           <span class="kw">AS</span> cc_band,
+    t.GeoZone          <span class="kw">AS</span> geo_zone,
+    t.NCBClass         <span class="kw">AS</span> ncb_class,
+    t.UsageType        <span class="kw">AS</span> usage_type,
+    t.SIBand           <span class="kw">AS</span> si_band,
+    <span class="cm">-- Exposure and premium</span>
+    e.EarnedExposure                              <span class="kw">AS</span> exposure_py,
+    <span class="fn">LOG</span>(e.EarnedExposure)                         <span class="kw">AS</span> log_exposure,
+    p.EarnedPremium                               <span class="kw">AS</span> earned_premium,
+    <span class="cm">-- Loss metrics</span>
+    <span class="fn">ISNULL</span>(c.IncurredLoss, <span class="num">0</span>)                    <span class="kw">AS</span> incurred_loss,
+    <span class="fn">ISNULL</span>(c.ClaimCount, <span class="num">0</span>)                      <span class="kw">AS</span> claim_count,
+    <span class="fn">ISNULL</span>(c.IncurredLoss, <span class="num">0</span>) /
+        <span class="fn">NULLIF</span>(p.EarnedPremium, <span class="num">0</span>)               <span class="kw">AS</span> loss_ratio,
+    <span class="fn">ISNULL</span>(c.IncurredLoss, <span class="num">0</span>) /
+        <span class="fn">NULLIF</span>(e.EarnedExposure, <span class="num">0</span>)              <span class="kw">AS</span> pure_premium,
+    <span class="cm">-- A/E ratio (requires GLM expected values loaded)</span>
+    <span class="fn">ISNULL</span>(c.IncurredLoss, <span class="num">0</span>) /
+        <span class="fn">NULLIF</span>(gr.ModelExpected, <span class="num">0</span>)              <span class="kw">AS</span> ae_ratio
+<span class="kw">FROM</span>            dbo.Policies            p
+<span class="kw">INNER JOIN</span>      dbo.TechnicalFactors    t   <span class="kw">ON</span> p.PolicyID = t.PolicyID
+<span class="kw">INNER JOIN</span>      dbo.EarnedExposure      e   <span class="kw">ON</span> p.PolicyID = e.PolicyID
+<span class="kw">LEFT  JOIN</span>      dbo.ClaimsSummary      c   <span class="kw">ON</span> p.PolicyID = c.PolicyID
+                                         <span class="kw">AND</span> p.PolicyYear = c.ClaimYear
+<span class="kw">LEFT  JOIN</span>      dbo.GLM_ModelOutput    gr  <span class="kw">ON</span> p.PolicyID = gr.PolicyID
+<span class="kw">WHERE</span> p.PolicyStatus <span class="kw">IN</span> (<span class="str">'INFORCE'</span>, <span class="str">'EXPIRED'</span>)
+  <span class="kw">AND</span> p.PolicyYear <span class="kw">BETWEEN</span> <span class="fn">YEAR</span>(<span class="fn">GETDATE</span>())-<span class="num">5</span> <span class="kw">AND</span> <span class="fn">YEAR</span>(<span class="fn">GETDATE</span>());</code></pre>
+      </div>
+      <div class="code-block" id="dax6">
+        <pre><code><span class="cm">-- Actual vs Expected Loss Ratio</span>
+<span class="fn">Actual Loss Ratio</span> =
+<span class="kw">DIVIDE</span>(
+    <span class="fn">SUM</span>( PricingExp[incurred_loss] ),
+    <span class="fn">SUM</span>( PricingExp[earned_premium] ),
+    <span class="num">0</span>
+)
+
+<span class="fn">Expected Loss Ratio (GLM)</span> =
+<span class="kw">DIVIDE</span>(
+    <span class="fn">SUM</span>( PricingExp[model_expected_loss] ),
+    <span class="fn">SUM</span>( PricingExp[earned_premium] ),
+    <span class="num">0</span>
+)
+
+<span class="fn">A/E Ratio</span> =
+<span class="kw">DIVIDE</span>( [Actual Loss Ratio], [Expected Loss Ratio (GLM)], <span class="num">1</span> )
+
+<span class="cm">-- Premium adequacy index (1.0 = perfectly adequate)</span>
+<span class="fn">Premium Adequacy Index</span> =
+<span class="kw">DIVIDE</span>(
+    <span class="fn">SUM</span>( PricingExp[earned_premium] ),
+    <span class="fn">SUM</span>( PricingExp[risk_cost_estimate] ),
+    <span class="num">0</span>
+)
+
+<span class="cm">-- RLS: Row-Level Security filter table (defined in Model view)</span>
+<span class="cm">-- Role: Product Manager filters to assigned LOB</span>
+<span class="cm">-- DAX expression in RLS role filter on PricingExp table:</span>
+<span class="fn">LOB Filter (RLS)</span> =
+<span class="fn">CONTAINS</span>(
+    <span class="fn">VALUES</span>( UserLOBMapping[ProductCode] ),
+    UserLOBMapping[ProductCode],
+    <span class="fn">LOOKUPVALUE</span>(
+        UserLOBMapping[ProductCode],
+        UserLOBMapping[UserEmail],
+        <span class="kw">USERPRINCIPALNAME</span>()
+    )
+)
+
+<span class="cm">-- YTD vs Prior Year Loss Ratio for repricing alert</span>
+<span class="fn">LR Variance vs PY</span> =
+<span class="kw">VAR</span> CY = <span class="fn">CALCULATE</span>( [Actual Loss Ratio],
+              <span class="fn">DATESYTD</span>( DateTable[Date] ) )
+<span class="kw">VAR</span> PY = <span class="fn">CALCULATE</span>( [Actual Loss Ratio],
+              <span class="fn">SAMEPERIODLASTYEAR</span>( <span class="fn">DATESYTD</span>( DateTable[Date] ) ) )
+<span class="kw">RETURN</span> CY - PY</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- TABLE -->
+  <div class="table-section">
+    <h2>GLM Rating Factor Relativities Key Variables</h2>
+    <table class="data-table">
+      <thead>
+        <tr><th>Rating Variable</th><th>Level</th><th>Relativity</th><th>95% CI Lower</th><th>95% CI Upper</th><th>Prior Rate</th><th>Type 3 p-value</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Geographic Zone</td><td>Zone A (metro)</td><td>1.48</td><td>1.39</td><td>1.57</td><td>1.30</td><td><span class="badge-green">&lt; 0.0001</span></td></tr>
+        <tr><td>Geographic Zone</td><td>Zone B (urban)</td><td>1.21</td><td>1.14</td><td>1.28</td><td>1.15</td><td><span class="badge-green">&lt; 0.0001</span></td></tr>
+        <tr><td>Vehicle Age</td><td>10+ years</td><td>1.35</td><td>1.25</td><td>1.46</td><td>1.18</td><td><span class="badge-green">&lt; 0.0001</span></td></tr>
+        <tr><td>NCB Class</td><td>NCB 50%</td><td>0.62</td><td>0.58</td><td>0.67</td><td>0.65</td><td><span class="badge-green">&lt; 0.0001</span></td></tr>
+        <tr><td>Age Band</td><td>18–25 yrs</td><td>1.82</td><td>1.69</td><td>1.96</td><td>1.60</td><td><span class="badge-green">&lt; 0.0001</span></td></tr>
+        <tr><td>Engine CC</td><td>2000+ cc</td><td>1.29</td><td>1.18</td><td>1.41</td><td>1.22</td><td><span class="badge-blue">0.0004</span></td></tr>
+        <tr><td>Usage Type</td><td>Commercial</td><td>1.54</td><td>1.44</td><td>1.65</td><td>1.40</td><td><span class="badge-green">&lt; 0.0001</span></td></tr>
+        <tr><td>Policy Tenure</td><td>≥ 5 years</td><td>0.88</td><td>0.83</td><td>0.94</td><td>0.90</td><td><span class="badge-blue">0.0021</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="proj-footer-nav">
+  <div class="proj-footer-inner">
+    <a href="project-5.html" class="pnav-card">
+      <span class="pnav-arrow">←</span>
+      <div><div class="pnav-label">Previous Project</div><div class="pnav-title">Fraud Detection Analytics</div></div>
+    </a>
+    <a href="index.html" class="pnav-card next">
+      <div><div class="pnav-label">Back To</div><div class="pnav-title">Portfolio Home</div></div>
+      <span class="pnav-arrow">→</span>
+    </a>
+  </div>
+</div>
+
+<script>
+const blue='#0068b5',blueLight='rgba(0,104,181,0.15)',accent='#f04e23';
+
+new Chart(document.getElementById('aeChart'),{
+  type:'bar',
+  data:{
+    labels:['Zone A','Zone B','Zone C','Zone D','Veh ≤3y','Veh 3-7y','Veh 7-10y','Veh 10y+','18-25','26-40','41-60','60+'],
+    datasets:[
+      {label:'Actual LR % (Pre)',data:[98,94,88,82,72,84,91,107,112,79,83,76],backgroundColor:'rgba(240,78,35,0.25)',borderColor:accent,borderWidth:1.5,borderRadius:4},
+      {label:'Actual LR % (Post)',data:[92,88,86,81,71,83,89,98,97,78,82,74],backgroundColor:blueLight,borderColor:blue,borderWidth:1.5,borderRadius:4}
+    ]
+  },
+  options:{responsive:true,maintainAspectRatio:true,plugins:{legend:{labels:{font:{size:10},boxWidth:14}}},
+    scales:{x:{grid:{display:false},ticks:{color:'#64748b',font:{size:8}}},y:{grid:{color:'#f0f4f8'},ticks:{color:'#64748b',font:{size:10},callback:v=>v+'%'},min:60}}}
+});
+
+new Chart(document.getElementById('relativChart'),{
+  type:'bar',
+  data:{
+    labels:['Age 18-25','Zone A','Commercial','Zone B','Veh 10yr+','CC 2000+','Age 60+','NCB 50%'],
+    datasets:[{
+      label:'GLM Relativity',
+      data:[1.82,1.48,1.54,1.21,1.35,1.29,0.79,0.62],
+      backgroundColor(ctx){return ctx.parsed.y>=1?'rgba(240,78,35,0.25)':'rgba(0,200,120,0.25)'},
+      borderColor(ctx){return ctx.parsed.y>=1?accent:'#10b981'},
+      borderWidth:1.5,borderRadius:5
+    }]
+  },
+  options:{responsive:true,maintainAspectRatio:true,plugins:{legend:{display:false}},
+    scales:{x:{grid:{display:false},ticks:{color:'#64748b',font:{size:9}}},y:{grid:{color:'#f0f4f8'},ticks:{color:'#64748b',font:{size:10}},
+      title:{display:true,text:'Relativity (Base = 1.0)',font:{size:10},color:'#64748b'}}}}
+});
+
+new Chart(document.getElementById('vehicleChart'),{
+  type:'line',
+  data:{
+    labels:['0–3 yrs','3–5 yrs','5–7 yrs','7–10 yrs','10+ yrs'],
+    datasets:[
+      {label:'Loss Ratio % (Before)',data:[72,78,84,93,107],borderColor:'#94a3b8',borderWidth:2,borderDash:[5,5],pointRadius:5,backgroundColor:'transparent',tension:0.3},
+      {label:'Loss Ratio % (After)',data:[71,77,83,89,98],borderColor:blue,borderWidth:2.5,fill:true,backgroundColor:blueLight,tension:0.3,pointRadius:5}
+    ]
+  },
+  options:{responsive:true,maintainAspectRatio:true,plugins:{legend:{labels:{font:{size:10},boxWidth:14}}},
+    scales:{x:{grid:{display:false},ticks:{color:'#64748b',font:{size:10}}},y:{grid:{color:'#f0f4f8'},ticks:{color:'#64748b',font:{size:10},callback:v=>v+'%'},title:{display:true,text:'Loss Ratio %',font:{size:10},color:'#64748b'}}}}
+});
+
+new Chart(document.getElementById('territoryChart'),{
+  type:'bar',
+  data:{
+    labels:['North Metro','South Metro','East Urban','West Urban','Central Semi-urban','North Semi-urban','East Rural','West Rural'],
+    datasets:[{
+      label:'Premium Adequacy Index',
+      data:[0.91,0.93,1.03,1.01,1.09,1.11,1.24,1.18],
+      backgroundColor(ctx){const v=ctx.parsed.y;return v<0.95?'rgba(240,78,35,0.3)':v>1.10?'rgba(0,200,120,0.25)':'rgba(0,104,181,0.2)'},
+      borderColor(ctx){const v=ctx.parsed.y;return v<0.95?accent:v>1.10?'#10b981':blue},
+      borderWidth:1.5,borderRadius:5
+    }]
+  },
+  options:{responsive:true,maintainAspectRatio:true,plugins:{legend:{display:false}},
+    scales:{x:{grid:{display:false},ticks:{color:'#64748b',font:{size:9}}},y:{grid:{color:'#f0f4f8'},
+      ticks:{color:'#64748b',font:{size:10}},
+      title:{display:true,text:'Adequacy Index (1.0 = adequate)',font:{size:10},color:'#64748b'},min:0.7}}}
+});
+
+function showTab(btn,id){
+  document.querySelectorAll('.code-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.code-block').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+</script>
+</body>
+</html>
