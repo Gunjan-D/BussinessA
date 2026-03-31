@@ -1,8 +1,8 @@
-# Gunjan's Business Intelligence Portfolio
+# Business Intelligence
 
 > **6 end-to-end BI projects** built with Power BI, SAS, SQL Server, SSIS & Power Automate — covering insurance analytics, fraud detection, predictive modelling, and pricing.
 
-🌐 **Live Site → [https://gunjan-d.github.io/BussinessA/](https://gunjan-d.github.io/BussinessA/)**
+**Live Site → [https://gunjan-d.github.io/BussinessA/](https://gunjan-d.github.io/BussinessA/)**
 
 ---
 
