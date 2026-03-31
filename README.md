@@ -1,4 +1,4 @@
-# 📊 Gunjan's Business Intelligence Portfolio
+# Gunjan's Business Intelligence Portfolio
 
 > **6 end-to-end BI projects** built with Power BI, SAS, SQL Server, SSIS & Power Automate — covering insurance analytics, fraud detection, predictive modelling, and pricing.
 
@@ -14,7 +14,7 @@
 
 ---
 
-## 🗂️ Projects
+## Projects
 
 ### 01 · Insurance Claims Analytics Dashboard
 `Power BI` `T-SQL` `DAX` `SSRS`
@@ -29,7 +29,7 @@ Multi-page Power BI dashboard built on 300K+ claim records. Tracks claim frequen
 
 ---
 
-### 02 · Policy Renewal Prediction & Retention ⭐ Featured
+### 02 · Policy Renewal Prediction & Retention  Featured
 `Base SAS` `PROC LOGISTIC` `SAS EG` `T-SQL` `Power BI`
 
 SAS logistic regression model scoring all active policies 60 days before renewal — identifying at-risk accounts for proactive retention outreach.
@@ -94,7 +94,7 @@ Generalised Linear Model (Tweedie GLM) built in SAS PROC GENMOD, modelling 12 ra
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 | Category | Tools |
 |----------|-------|
@@ -106,7 +106,7 @@ Generalised Linear Model (Tweedie GLM) built in SAS PROC GENMOD, modelling 12 ra
 
 ---
 
-## 📁 Repository Structure
+##  Repository Structure
 
 ```
 BussinessA/
@@ -124,11 +124,11 @@ BussinessA/
 
 ---
 
-## 🚀 View Live
+##  View Live
 
 The portfolio is hosted on GitHub Pages and publicly accessible:
 
-**🔗 [https://gunjan-d.github.io/BussinessA/](https://gunjan-d.github.io/BussinessA/)**
+** [https://gunjan-d.github.io/BussinessA/](https://gunjan-d.github.io/BussinessA/)**
 
 Each project card links to a full standalone page with:
 - Interactive Chart.js visualisations
