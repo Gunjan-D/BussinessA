@@ -1,6 +1,6 @@
 # Business Intelligence
 
-> **6 end-to-end BI projects** built with Power BI, SAS, SQL Server, SSIS & Power Automate — covering insurance analytics, fraud detection, predictive modelling, and pricing.
+> **6 end-to-end BI projects** built with Power BI, SAS, SQL Server, SSIS & Power Automate, covering insurance analytics, fraud detection, predictive modelling, and pricing.
 
 **Live Site → [https://gunjan-d.github.io/BussinessA/](https://gunjan-d.github.io/BussinessA/)**
 
@@ -137,5 +137,5 @@ Each project card links to a full standalone page with:
 - Step-by-step process documentation
 
 ---
-///////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
 *Built with HTML, CSS & Chart.js · Hosted on GitHub Pages*
