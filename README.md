@@ -137,5 +137,4 @@ Each project card links to a full standalone page with:
 - Step-by-step process documentation
 
 ---
-/////////////////////
-*Built with HTML, CSS & Chart.js · Hosted on GitHub Pages*
+///////////////////
