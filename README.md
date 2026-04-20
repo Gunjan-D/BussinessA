@@ -137,4 +137,4 @@ Each project card links to a full standalone page with:
 - Step-by-step process documentation
 
 ---
-////////////////////////
+///////////////////////
